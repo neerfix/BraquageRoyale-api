@@ -5,10 +5,17 @@
   },
   "hosting": {
     "public": "public",
+    "site": "braquage-royale-api",
     "ignore": [
       "firebase.json",
       "**/.*",
       "**/node_modules/**"
+    ],
+    "rewrites": [
+      {
+        "source": "**",
+        "function": "api"
+      }
     ]
   },
   "storage": {
