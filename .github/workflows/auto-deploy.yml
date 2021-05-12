@@ -6,13 +6,14 @@ on:
 
 jobs:
   release:
-    name: Build
+    name: Release
     runs-on: ubuntu-latest
     steps:
       - name: Automatic Releases
         uses: marvinpinto/action-automatic-releases@latest
   build:
     name: Build
+    needs: build
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repo
