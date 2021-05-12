@@ -6,29 +6,30 @@ on:
 
 jobs:
   release:
-    name: Release
+    name: Pre-Release
     runs-on: ubuntu-latest
     steps:
-      - name: Automatic Releases
+      - name: Automatic Pre Releases
         uses: marvinpinto/action-automatic-releases@latest
-  build:
-    name: Build
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout Repo
-        uses: actions/checkout@master
-      - name: Install Dependencies
-        run: npm install
-      - name: Build
-        run: npm run build
-      - name: Archive Production Artifact
-        uses: actions/upload-artifact@master
         with:
-          name: dist
-          path: dist
+          repo_token: "${{ secrets.TOKEN_REPO }}"
+          automatic_release_tag: "latest"
+          prerelease: true
+  tagged-release:
+    name: "Tagged Release"
+    runs-on: "ubuntu-latest"
+
+    steps:
+      - name: Release
+        run: |
+          echo "done!"
+      - uses: marvinpinto/action-automatic-releases@latest
+        with:
+          repo_token: "${{ secrets.TOKEN_REPO }}"
+          prerelease: false
   deploy:
     name: Deploy
-    needs: build
+    needs: release
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repo
