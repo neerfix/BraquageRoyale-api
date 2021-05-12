@@ -5,7 +5,7 @@ on:
       - master
 
 jobs:
-  release:
+  pre-release:
     name: Pre-Release
     runs-on: ubuntu-latest
     steps:
@@ -15,11 +15,10 @@ jobs:
           repo_token: "${{ secrets.TOKEN_REPO }}"
           automatic_release_tag: "latest"
           prerelease: true
-  tagged-release:
-    name: "Tagged Release"
+  release:
+    name: Release
     needs: pre-release
-    runs-on: "ubuntu-latest"
-
+    runs-on: ubuntu-latest
     steps:
       - name: Release
         run: |
