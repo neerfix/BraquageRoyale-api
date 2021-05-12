@@ -17,6 +17,7 @@ jobs:
           prerelease: true
   tagged-release:
     name: "Tagged Release"
+    needs: pre-release
     runs-on: "ubuntu-latest"
 
     steps:
