@@ -8,9 +8,12 @@ jobs:
     name: Deploy
     runs-on: ubuntu-latest
     steps:
+      -
       - name: Check out code
         uses: actions/checkout@master
       - name: Deploy to Firebase
         uses: BIGG-Kaymo/deploy-firebase-functions@v1.0.1
+        with:
+          node-version: '14'
         env:
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
