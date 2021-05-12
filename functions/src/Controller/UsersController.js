@@ -1,7 +1,6 @@
 const express = require("express");
 const router = express.Router();
 const userService = require("../../Services/Users/users.services");
-const Http_response = require('../../Utils/http-response');
 
 // routes -> /users/
 
