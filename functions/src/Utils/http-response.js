@@ -1,5 +1,6 @@
 module.exports = {
     HTTP_200,
+    HTTP_201,
     HTTP_400,
     HTTP_404,
     HTTP_500,
@@ -9,8 +10,12 @@ function errorMessage (res, code, message, reason, details) {
     return res.status(code).send({ "code": code, "message": message, "reason": reason, "details": details })
 }
 
-function HTTP_200 (req, res, next) {
-    return res.status
+function HTTP_200 (req, res, next, message) {
+    return res.status(200).send(message)
+}
+
+function HTTP_201 (req, res, next, message) {
+    return res.status(201).send(message)
 }
 
 function HTTP_400 (req, res, next, field) {
