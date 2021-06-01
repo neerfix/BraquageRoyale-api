@@ -167,8 +167,10 @@ components:
         - users
       properties:
         id:
-          type: integer
+          type: string
           description: Unique identifier for the given user.
+          format: uuid
+          readOnly: true
         firstName:
           type: string
         lastName:
@@ -176,17 +178,6 @@ components:
         email:
           type: string
           format: email
-        dateOfBirth:
-          type: string
-          format: date
-          example: '1997-10-31'
-        emailVerified:
-          type: boolean
-          description: Set to true if the user's email has been verified.
-        createDate:
-          type: string
-          format: date
-          description: The date that the user was created.
         player:
           type: object
           properties:
@@ -204,9 +195,6 @@ components:
         status:
           type: string
           readOnly: true
-        updateDate:
-          type: string
-          format: date
         password:
           type: string
           format: password
@@ -237,6 +225,4 @@ components:
         - firstName
         - lastName
         - email
-        - dateOfBirth
-        - emailVerified
         - password
