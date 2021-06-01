@@ -1,6 +1,7 @@
 const users = require("../src/Controller/UsersController")
 const maps = require("../src/Controller/MapsController")
 const gamemodes = require("../src/Controller/GameModesController")
+const objects = require("../src/Controller/ObjectsController")
 const Http_response = require("../src/Utils/http-response")
 
 module.exports = {
@@ -78,6 +79,23 @@ module.exports = {
             })
             .delete("/characters/:characterId",(req, res) => {
                 characters.deleteCharacterById(req, res)
+            })
+
+            // Objects
+            .get("/objects", (req, res) => {
+                objects.getAllObjects(req, res)
+            })
+            .get("/objects/:objectId", (req, res) => {
+                objects.getOneObject(req, res)
+            })
+            .post("/objects/", (req, res) => {
+                objects.createNewObject(req, res)
+            })
+            .patch("/objects/:objectId", (req, res) => {
+                objects.updateObjectById(req, res)
+            })
+            .delete("/objects/:objectId",(req, res) => {
+                objects.deleteObjectById(req, res)
             })
     }
 };
