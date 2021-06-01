@@ -224,6 +224,8 @@ components:
               type: string
               format: date
               example: '1997-10-31'
+          required:
+            - date_of_birth
       required:
         - id
         - firstName
