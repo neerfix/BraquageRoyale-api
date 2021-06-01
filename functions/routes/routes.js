@@ -62,5 +62,22 @@ module.exports = {
             .delete("/gamemodes/:gamemodeId",(req, res) => {
                 gamemodes.deleteGamemodeById(req, res)
             })
+
+            // Characters
+            .get("/characters", (req, res) => {
+                characters.getAllCharacters(req, res)
+            })
+            .get("/characters/:characterId", (req, res) => {
+                characters.getOneCharacter(req, res)
+            })
+            .post("/characters/", (req, res) => {
+                characters.createNewCharacter(req, res)
+            })
+            .patch("/characters/:characterId", (req, res) => {
+                characters.updateCharacterById(req, res)
+            })
+            .delete("/characters/:characterId",(req, res) => {
+                characters.deleteCharacterById(req, res)
+            })
     }
 };
