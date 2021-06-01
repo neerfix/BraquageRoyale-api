@@ -8,8 +8,253 @@ info:
 servers:
   - url: 'https://srv.braquage-royale.xyz'
     description: prod
-paths: {}
+paths:
+  /games:
+    post:
+      summary: Start new game
+      operationId: post-start
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Game'
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      tags:
+        - Games
+      description: Start a new game
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Game'
+    parameters: []
+    get:
+      summary: Get All
+      operationId: get-games
+      responses:
+        '200':
+          description: OK
+      tags:
+        - Games
+      description: Get a game
+  '/games/{gameId}':
+    parameters:
+      - schema:
+          type: string
+        name: gameId
+        in: path
+        required: true
+    get:
+      summary: Get One
+      tags:
+        - Games
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Game'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '503':
+          description: Service Unavailable
+      operationId: get-ganes-gameId
+      description: Get one game by Id
+    patch:
+      summary: Update
+      operationId: patch-ganes-gameId
+      responses:
+        '202':
+          description: Accepted
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '503':
+          description: Service Unavailable
+      tags:
+        - Games
+      description: Update one game by id
+    delete:
+      summary: Delete
+      operationId: delete-ganes-gameId
+      responses:
+        '200':
+          description: OK
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '503':
+          description: Service Unavailable
+      tags:
+        - Games
+      description: Delete one game by Id
+  '/games/{gameId}/invite':
+    parameters:
+      - schema:
+          type: string
+        name: gameId
+        in: path
+        required: true
+    post:
+      summary: ''
+      operationId: post-games-gameId-invite
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '503':
+          description: Service Unavailable
+      description: Send an invitation to selected players or email
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                type: object
+                properties:
+                  emails:
+                    type:
+                      - string
+                      - 'null'
+                  player:
+                    type:
+                      - object
+                      - 'null'
+                    properties:
+                      ref:
+                        $ref: ''
+        description: ''
+      tags:
+        - Invitation
 components:
-  schemas: {}
+  schemas:
+    Game:
+      title: Game
+      type: object
+      examples: []
+      properties:
+        id:
+          type: string
+          format: uuid
+          readOnly: true
+        date:
+          type: object
+          required:
+            - created_at
+            - updated_at
+          properties:
+            created_at:
+              format: date
+              type: string
+              readOnly: true
+            updated_at:
+              type: string
+              format: date
+            finished_at:
+              type: string
+              format: date
+        name:
+          type: string
+        max_players:
+          type: number
+          maximum: 5
+        is_private:
+          type: boolean
+        invit_code:
+          type:
+            - string
+            - 'null'
+        map_id:
+          type: string
+          format: uuid
+        players:
+          type:
+            - array
+            - 'null'
+          items:
+            type: object
+            properties:
+              user_id:
+                type: string
+                format: uuid
+              vitality:
+                type: number
+                format: float
+                default: 100
+              attack:
+                type: number
+                format: float
+                default: 10
+              kills:
+                type: number
+                default: 0
+              coordinates:
+                type: object
+                required:
+                  - x
+                  - 'y'
+                properties:
+                  x:
+                    type: number
+                    format: float
+                  'y':
+                    type: number
+                    format: float
+              is_spectate:
+                type: boolean
+                default: false
+              caracter_id:
+                type: string
+                format: uuid
+            required:
+              - user_id
+              - vitality
+              - attack
+              - kills
+              - coordinates
+              - is_spectate
+        is_active:
+          type: boolean
+          default: true
+      required:
+        - id
+        - date
+        - name
+        - max_players
+        - is_private
+        - map_id
+        - players
+        - is_active
+      x-tags:
+        - Model
 tags:
   - name: Game-server
+  - name: Games
