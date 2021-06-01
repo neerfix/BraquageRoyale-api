@@ -220,6 +220,10 @@ components:
               example: '1997-10-31'
               format: date
               readOnly: true
+            date_of_birth:
+              type: string
+              format: date
+              example: '1997-10-31'
       required:
         - id
         - firstName
