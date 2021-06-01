@@ -201,9 +201,42 @@ components:
               readOnly: true
           required:
             - username
+        status:
+          type: string
+          readOnly: true
+        updateDate:
+          type: string
+          format: date
+        password:
+          type: string
+          format: password
+          writeOnly: true
+        avatar:
+          type: string
+          format: uri
+        date:
+          type: object
+          properties:
+            created_at:
+              type: string
+              format: date
+              example: '1997-10-31'
+              readOnly: true
+            updated_at:
+              type: string
+              format: date
+              example: '1997-10-31'
+              readOnly: true
+            last_login:
+              type: string
+              example: '1997-10-31'
+              format: date
+              readOnly: true
       required:
         - id
         - firstName
         - lastName
         - email
+        - dateOfBirth
         - emailVerified
+        - password
