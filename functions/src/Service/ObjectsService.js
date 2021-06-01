@@ -3,19 +3,19 @@ const admin = require('firebase-admin');
 const Http_response = require("../Utils/http-response");
 
 module.exports = {
-    createNewGamemode,
-    updateGamemodeById,
-    deleteGamemodeById
+    createNewObject,
+    updateObjectById,
+    deleteObjectById
 };
 
-async function createNewGamemode(req, res) {
+async function createNewObject(req, res) {
     Http_response.HTTP_200(req, res, '', 'hello')
 }
 
-async function updateGamemodeById(req, res) {
+async function updateObjectById(req, res) {
     Http_response.HTTP_200(req, res, '', 'hello')
 }
 
-async function deleteGamemodeById(req, res) {
+async function deleteObjectById(req, res) {
     Http_response.HTTP_200(req, res, '', 'hello')
 }
