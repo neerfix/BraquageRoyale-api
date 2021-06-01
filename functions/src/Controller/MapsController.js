@@ -1,13 +1,46 @@
-const express = require("express");
-const router = express.Router();
-const userService = require("../../Services/Users/users.services");
+const mapService = require("../Service/MapsService");
+const mapRepository = require("../Repository/MapsRepository");
 
 // routes -> /maps/
+module.exports = {
+    getAllMaps,
+    getOneMap,
+    createNewMap,
+    updateMapById,
+    deleteMapById
+}
 
-router.get("/", getAllMaps);
-function getAllMaps(req, res, next) {
-    userService
+function getAllMaps (req, res, next) {
+    mapRepository
         .getAllMaps(req, res)
-        .then((users) => res.send(users))
+        .then((maps) => res.send(maps))
+        .catch((err) => next(err));
+}
+
+function getOneMap (req, res, next) {
+    mapRepository
+        .getOneMapById(req, res)
+        .then((maps) => res.send(maps))
+        .catch((err) => next(err));
+}
+
+function createNewMap (req, res, next) {
+    mapService
+        .createNewMap(req, res)
+        .then((maps) => res.send(maps))
+        .catch((err) => next(err));
+}
+
+function updateMapById (req, res, next) {
+    mapService
+        .updateMapById(req, res)
+        .then((maps) => res.send(maps))
+        .catch((err) => next(err));
+}
+
+function deleteMapById (req, res, next) {
+    mapService
+        .deleteMapById(req, res)
+        .then((maps) => res.send(maps))
         .catch((err) => next(err));
 }

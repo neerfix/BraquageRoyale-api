@@ -1,4 +1,5 @@
 const users = require("../src/Controller/UsersController")
+const maps = require("../src/Controller/MapsController")
 const Http_response = require("../src/Utils/http-response")
 
 module.exports = {
@@ -25,6 +26,23 @@ module.exports = {
             })
             .delete("/users/:userId",(req, res) => {
                 users.deleteUserById(req, res)
+            })
+
+            // MAPS
+            .get("/maps", (req, res) => {
+                maps.getAllMaps(req, res)
+            })
+            .get("/maps/:mapId", (req, res) => {
+                maps.getOneMap(req, res)
+            })
+            .post("/maps/", (req, res) => {
+                maps.createNewMap(req, res)
+            })
+            .patch("/maps/:mapId", (req, res) => {
+                maps.updateMapById(req, res)
+            })
+            .delete("/maps/:mapId",(req, res) => {
+                maps.deleteMapById(req, res)
             })
     }
 };
