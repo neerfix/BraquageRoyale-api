@@ -18,7 +18,7 @@ paths:
         required: true
         description: Id of an existing user.
     get:
-      summary: GET-ONE
+      summary: Get One
       tags:
         - Users
       responses:
@@ -43,7 +43,7 @@ paths:
       operationId: get-users-userId
       description: Retrieve the information of the user with the matching user ID.
     patch:
-      summary: UPDATE
+      summary: Update
       operationId: patch-users-userId
       responses:
         '200':
@@ -89,7 +89,7 @@ paths:
         - Users
       parameters: []
     delete:
-      summary: DELETE
+      summary: Delete
       operationId: delete-users-userId
       responses:
         '200':
@@ -99,7 +99,7 @@ paths:
       description: Delete user by id
   /user:
     post:
-      summary: CREATE
+      summary: Create
       operationId: post-user
       responses:
         '200':
@@ -154,7 +154,7 @@ paths:
       tags:
         - Users
     get:
-      summary: GET-ALL
+      summary: Get All
       operationId: get-user
       responses:
         '200':
