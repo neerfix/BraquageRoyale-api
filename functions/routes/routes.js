@@ -1,5 +1,6 @@
 const users = require("../src/Controller/UsersController")
 const maps = require("../src/Controller/MapsController")
+const gamemodes = require("../src/Controller/GameModesController")
 const Http_response = require("../src/Utils/http-response")
 
 module.exports = {
@@ -43,6 +44,40 @@ module.exports = {
             })
             .delete("/maps/:mapId",(req, res) => {
                 maps.deleteMapById(req, res)
+            })
+
+            // GAMEMODES
+            .get("/gamemodes", (req, res) => {
+                gamemodes.getAllGamemodes(req, res)
+            })
+            .get("/gamemodes/:gamemodeId", (req, res) => {
+                gamemodes.getOneGamemode(req, res)
+            })
+            .post("/gamemodes/", (req, res) => {
+                gamemodes.createNewGamemode(req, res)
+            })
+            .patch("/gamemodes/:gamemodeId", (req, res) => {
+                gamemodes.updateGamemodeById(req, res)
+            })
+            .delete("/gamemodes/:gamemodeId",(req, res) => {
+                gamemodes.deleteGamemodeById(req, res)
+            })
+
+            // Characters
+            .get("/characters", (req, res) => {
+                characters.getAllCharacters(req, res)
+            })
+            .get("/characters/:characterId", (req, res) => {
+                characters.getOneCharacter(req, res)
+            })
+            .post("/characters/", (req, res) => {
+                characters.createNewCharacter(req, res)
+            })
+            .patch("/characters/:characterId", (req, res) => {
+                characters.updateCharacterById(req, res)
+            })
+            .delete("/characters/:characterId",(req, res) => {
+                characters.deleteCharacterById(req, res)
             })
     }
 };
