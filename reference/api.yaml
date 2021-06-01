@@ -171,6 +171,47 @@ paths:
                 $ref: '#/components/schemas/User'
             examples: {}
         description: Array of User Object
+  '/game/{gameId}':
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: Game found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Game'
+        '404':
+          description: Game Not Found
+      operationId: get-game
+      description: Retrieve the information of the game with the matching game ID.
+    parameters:
+      - schema:
+          type: string
+        name: gameId
+        in: path
+        required: true
+    patch:
+      summary: ''
+      operationId: patch-game-gameId
+      responses:
+        '200':
+          description: OK
+      description: Update the information of an existing game.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Game'
+            examples: {}
+    delete:
+      summary: ''
+      operationId: delete-game-gameId
+      responses:
+        '200':
+          description: OK
+      description: Delete game by id
 components:
   schemas:
     User:
