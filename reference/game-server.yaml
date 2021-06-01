@@ -1,0 +1,15 @@
+openapi: 3.1.0
+info:
+  title: Game Server
+  version: '1.0'
+  contact:
+    email: contact@braquage-royale.xyz
+  description: Server to manage game
+servers:
+  - url: 'https://srv.braquage-royale.xyz'
+    description: prod
+paths: {}
+components:
+  schemas: {}
+tags:
+  - name: Game-server
