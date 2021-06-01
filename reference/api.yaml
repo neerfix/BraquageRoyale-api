@@ -278,6 +278,98 @@ paths:
       description: Delete one map by id
       tags:
         - Maps
+  /characters:
+    get:
+      summary: Get All
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Character'
+      operationId: get-characters
+      description: Get all character of game
+      tags:
+        - Characters
+    post:
+      summary: Create
+      operationId: post-characters
+      responses:
+        '201':
+          description: Created
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      description: Create a new character
+      tags:
+        - Characters
+  '/characters/{characterId}':
+    parameters:
+      - schema:
+          type: string
+        name: characterId
+        in: path
+        required: true
+    get:
+      summary: Get one
+      tags:
+        - Characters
+      responses:
+        '200':
+          description: OK
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      operationId: get-characters-characterId
+      description: Get one character by Id
+    patch:
+      summary: Update
+      operationId: patch-characters-characterId
+      responses:
+        '202':
+          description: Accepted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Character'
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Character'
+      tags:
+        - Characters
+      description: Update one character by id
+    delete:
+      summary: Delete
+      operationId: delete-characters-characterId
+      responses:
+        '200':
+          description: OK
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      description: Delete one character by Id
+      tags:
+        - Characters
 components:
   schemas:
     User:
@@ -292,6 +384,8 @@ components:
           dateOfBirth: '1997-10-31'
           emailVerified: true
           signUpDate: '2019-08-24'
+      x-tags:
+        - Model
       properties:
         id:
           type: string
@@ -337,11 +431,6 @@ components:
               format: date
               example: '1997-10-31'
               readOnly: true
-            last_login:
-              type: string
-              example: '1997-10-31'
-              format: date
-              readOnly: true
             date_of_birth:
               type: string
               format: date
@@ -353,13 +442,11 @@ components:
         - firstName
         - lastName
         - email
-      x-tags:
-        - Model
     Map:
       title: Map Model
       type: object
       x-tags:
-        - Maps
+        - Model
       description: ''
       examples: []
       properties:
@@ -404,11 +491,27 @@ components:
       required:
         - id
         - name
+    Character:
+      title: Character
+      type: object
+      x-tags:
+        - Model
+      description: ''
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+        url_image:
+          type: string
+          format: uri
   securitySchemes: {}
   responses: {}
   examples: {}
 security: []
 tags:
   - name: API
+  - name: Characters
   - name: Maps
   - name: Users
