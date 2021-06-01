@@ -18,7 +18,8 @@ paths:
         description: Id of an existing user.
     get:
       summary: Get User Info by User ID
-      tags: []
+      tags:
+        - users
       responses:
         '200':
           description: User Found
@@ -146,6 +147,8 @@ paths:
                   dateOfBirth: '1996-08-24'
         description: Post the necessary fields for the API to create a new user.
       description: Create a new user.
+      tags:
+        - users
 components:
   schemas:
     User:
@@ -160,6 +163,8 @@ components:
           dateOfBirth: '1997-10-31'
           emailVerified: true
           signUpDate: '2019-08-24'
+      x-tags:
+        - users
       properties:
         id:
           type: integer
@@ -182,6 +187,20 @@ components:
           type: string
           format: date
           description: The date that the user was created.
+        player:
+          type: object
+          properties:
+            username:
+              type: string
+            rank:
+              type: string
+              readOnly: true
+            exp:
+              type: integer
+              minimum: 0
+              readOnly: true
+          required:
+            - username
       required:
         - id
         - firstName
