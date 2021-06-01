@@ -150,7 +150,7 @@ paths:
         description: Post the necessary fields for the API to create a new user.
       description: Create a new user.
       tags:
-        - users
+        - Users
 components:
   schemas:
     User:
