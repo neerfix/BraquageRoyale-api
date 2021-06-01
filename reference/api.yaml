@@ -154,7 +154,7 @@ paths:
 components:
   schemas:
     User:
-      title: User
+      title: User Model
       type: object
       description: ''
       examples:
@@ -165,8 +165,6 @@ components:
           dateOfBirth: '1997-10-31'
           emailVerified: true
           signUpDate: '2019-08-24'
-      x-tags:
-        - users
       properties:
         id:
           type: string
@@ -234,3 +232,5 @@ components:
         - lastName
         - email
         - password
+      x-tags:
+        - model
