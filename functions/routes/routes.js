@@ -1,6 +1,7 @@
 const users = require("../src/Controller/UsersController")
 const maps = require("../src/Controller/MapsController")
-const gamemodes = require("../src/Controller/GameModesController")
+const characters = require("../src/Controller/CharactersController")
+const games = require("../src/Controller/GamesController")
 const objects = require("../src/Controller/ObjectsController")
 const Http_response = require("../src/Utils/http-response")
 
@@ -47,21 +48,21 @@ module.exports = {
                 maps.deleteMapById(req, res)
             })
 
-            // GAMEMODES
-            .get("/gamemodes", (req, res) => {
-                gamemodes.getAllGamemodes(req, res)
+            // GAMES
+            .get("/games", (req, res) => {
+                games.getAllGames(req, res)
             })
-            .get("/gamemodes/:gamemodeId", (req, res) => {
-                gamemodes.getOneGamemode(req, res)
+            .get("/game/:gameId", (req, res) => {
+                games.getOneGame(req, res)
             })
-            .post("/gamemodes/", (req, res) => {
-                gamemodes.createNewGamemode(req, res)
+            .post("/games/", (req, res) => {
+                games.createNewGame(req, res)
             })
-            .patch("/gamemodes/:gamemodeId", (req, res) => {
-                gamemodes.updateGamemodeById(req, res)
+            .patch("/games/:gameId", (req, res) => {
+                games.updateGameById(req, res)
             })
-            .delete("/gamemodes/:gamemodeId",(req, res) => {
-                gamemodes.deleteGamemodeById(req, res)
+            .delete("/games/:gameId",(req, res) => {
+                games.deleteGameById(req, res)
             })
 
             // Characters
