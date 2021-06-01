@@ -4,6 +4,7 @@ info:
   version: '1.0'
   contact:
     email: contact@braquage-royale.xyz
+  description: Documentation of API of braquage-royale.
 servers:
   - url: 'https://api.braquage-royale.xyz'
     description: Prod
@@ -11,15 +12,15 @@ paths:
   '/users/{userId}':
     parameters:
       - schema:
-          type: integer
+          type: string
         name: userId
         in: path
         required: true
         description: Id of an existing user.
     get:
-      summary: Get User Info by User ID
+      summary: GET-ONE
       tags:
-        - users
+        - Users
       responses:
         '200':
           description: User Found
@@ -30,7 +31,7 @@ paths:
               examples:
                 Get User Alice Smith:
                   value:
-                    id: 142
+                    id: ABC142
                     firstName: Alice
                     lastName: Smith
                     email: alice.smith@gmail.com
@@ -42,7 +43,7 @@ paths:
       operationId: get-users-userId
       description: Retrieve the information of the user with the matching user ID.
     patch:
-      summary: Update User Information
+      summary: UPDATE
       operationId: patch-users-userId
       responses:
         '200':
@@ -51,16 +52,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/User'
-              examples:
-                Updated User Rebecca Baker:
-                  value:
-                    id: 13
-                    firstName: Rebecca
-                    lastName: Baker
-                    email: rebecca@gmail.com
-                    dateOfBirth: '1985-10-02'
-                    emailVerified: false
-                    createDate: '2019-08-24'
+              examples: {}
         '404':
           description: User Not Found
         '409':
@@ -94,10 +86,20 @@ paths:
                   dateOfBirth: '1985-10-02'
         description: Patch user properties to update.
       tags:
-        - users
+        - Users
+      parameters: []
+    delete:
+      summary: DELETE
+      operationId: delete-users-userId
+      responses:
+        '200':
+          description: OK
+      tags:
+        - Users
+      description: Delete user by id
   /user:
     post:
-      summary: Create New User
+      summary: CREATE
       operationId: post-user
       responses:
         '200':
@@ -109,7 +111,7 @@ paths:
               examples:
                 New User Bob Fellow:
                   value:
-                    id: 12
+                    id: ABC142
                     firstName: Bob
                     lastName: Fellow
                     email: bob.fellow@gmail.com
@@ -151,6 +153,24 @@ paths:
       description: Create a new user.
       tags:
         - Users
+    get:
+      summary: GET-ALL
+      operationId: get-user
+      responses:
+        '200':
+          description: OK
+      description: Get all users
+      tags:
+        - Users
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/User'
+            examples: {}
+        description: Array of User Object
 components:
   schemas:
     User:
@@ -169,7 +189,6 @@ components:
         id:
           type: string
           description: Unique identifier for the given user.
-          format: uuid
           readOnly: true
         firstName:
           type: string
@@ -195,10 +214,6 @@ components:
         status:
           type: string
           readOnly: true
-        password:
-          type: string
-          format: password
-          writeOnly: true
         avatar:
           type: string
           format: uri
@@ -231,6 +246,10 @@ components:
         - firstName
         - lastName
         - email
-        - password
       x-tags:
-        - model
+        - Model
+  securitySchemes: {}
+security: []
+tags:
+  - name: API
+  - name: Users
