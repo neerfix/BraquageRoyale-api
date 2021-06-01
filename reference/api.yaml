@@ -248,6 +248,103 @@ components:
         - email
       x-tags:
         - Model
+    Game:
+      title: Game
+      type: object
+      examples: []
+      properties:
+        id:
+          type: string
+          format: uuid
+          readOnly: true
+        date:
+          type: object
+          required:
+            - created_at
+            - updated_at
+          properties:
+            created_at:
+              format: date
+              type: string
+              readOnly: true
+            updated_at:
+              type: string
+              format: date
+            finished_at:
+              type: string
+              format: date
+        name:
+          type: string
+        max_players:
+          type: number
+          maximum: 5
+        is_private:
+          type: boolean
+        invit_code:
+          type:
+            - string
+            - 'null'
+        map_id:
+          type: string
+          format: uuid
+        players:
+          type:
+            - array
+            - 'null'
+          items:
+            type: object
+            properties:
+              user_id:
+                type: string
+                format: uuid
+              vitality:
+                type: number
+                format: float
+                default: 100
+              attack:
+                type: number
+                format: float
+                default: 10
+              kills:
+                type: number
+                default: 0
+              coordinates:
+                type: object
+                required:
+                  - x
+                  - 'y'
+                properties:
+                  x:
+                    type: number
+                    format: float
+                  'y':
+                    type: number
+                    format: float
+              is_spectate:
+                type: boolean
+                default: false
+              caracter_id:
+                type: string
+                format: uuid
+            required:
+              - user_id
+              - vitality
+              - attack
+              - kills
+              - coordinates
+              - is_spectate
+        is_active:
+          type: boolean
+          default: true
+      required:
+        - id
+        - date
+        - name
+        - max_players
+        - is_private
+        - map_id
+        - players
+        - is_active
   securitySchemes: {}
 security: []
 tags:
