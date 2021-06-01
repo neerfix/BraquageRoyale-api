@@ -1,17 +1,12 @@
-import * as Http_response from "./http-response";
-
 const admin = require('firebase-admin');
-let serviceAccount;
+const Http_response  = require("./http-response");
 
-serviceAccount = require('../../config/serviceAccount.json');
+admin.initializeApp();
 
-admin.initializeApp({
-    credential: admin.credential.cert(serviceAccount),
-    databaseURL: process.env.DATABASE_URL
-});
+const db = admin.firestore()
 
 const getAll = async (req, res, type) => {
-    const document = admin.collection(type);
+    const document = db.collection(type);
     let response = [];
 
     await document.get().then(querySnapshot => {
@@ -25,7 +20,7 @@ const getAll = async (req, res, type) => {
 }
 
 const getOne = async (req, res, type, data) => {
-    const document = admin.collection(type).doc(data);
+    const document = db.collection(type).doc(data);
     let response = (await document.get()).data();
 
     if(!response){
@@ -36,7 +31,7 @@ const getOne = async (req, res, type, data) => {
 }
 
 const create = async (req, res, type, data, body) => {
-    await admin.collection(type).doc(data)
+    await db.collection(type).doc(data)
         .set({
             body
         })
@@ -49,7 +44,7 @@ const create = async (req, res, type, data, body) => {
 }
 
 module.exports = {
-    db: admin.firestore(),
+    db,
     getAll,
     getOne,
     create

@@ -1,4 +1,4 @@
-const firebase = require('../../utils/firebase');
+const firebase = require('../Utils/firebase');
 
 module.exports = {
     getAllUsers,
@@ -6,7 +6,7 @@ module.exports = {
 };
 
 async function getAllUsers(req, res) {
-    firebase.getAll(req, res, 'users')
+    await firebase.getAll(req, res, 'users')
 }
 
 async function getOneUserById(req, res) {
