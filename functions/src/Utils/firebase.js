@@ -32,7 +32,7 @@ const getOne = async (req, res, type, data) => {
     return response;
 }
 
-const create = async (req, res, type, body, ) => {
+const create = async (req, res, type, body) => {
     await db.collection(type).doc()
         .set({
             body

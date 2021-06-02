@@ -39,13 +39,24 @@ async function createNewUser(req, res) {
                 last_login: new Date(userRecord.metadata.creationTime),
             }
         };
-        await firebase.create(req, res, 'users', body);
-        const user = userRepository.getOneUserById(req, res, userRecord.uid);
+        await firebase.db.collection('users').doc(userRecord.uid)
+            .set({
+                body
+            }).then(async result =>{
+                const document = firebase.db.collection('users').doc(userRecord.uid);
+                let response = (await document.get()).data();
 
-        Http_response.HTTP_201(req, res, '', user);
-    }.catch(function(error) {
+                if(!response){
+                    Http_response.HTTP_404(req, res, '', 'User')
+                }
+
+                return res.status(201).send(response);
+            }).catch(e => {
+                return {code: e.code, message: e.message};
+            });
+    }).catch(function(error) {
         Http_response.HTTP_409(req, res, '', '', error.message);
-    }));
+    })
 }
 
 async function updateUserById(req, res) {
