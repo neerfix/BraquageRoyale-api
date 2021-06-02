@@ -116,22 +116,7 @@ paths:
         content:
           application/json:
             schema:
-              type: object
-              properties:
-                firstName:
-                  type: string
-                lastName:
-                  type: string
-                email:
-                  type: string
-                dateOfBirth:
-                  type: string
-                  format: date
-              required:
-                - firstName
-                - lastName
-                - email
-                - dateOfBirth
+              $ref: '#/components/schemas/User'
             examples:
               Create User Bob Fellow:
                 value:
@@ -198,6 +183,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/Map'
+        description: ''
       description: Create a new map
   '/maps/{mapId}':
     parameters:
@@ -299,6 +285,12 @@ paths:
       description: Create a new character
       tags:
         - Characters
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Character'
+        description: ''
   '/characters/{characterId}':
     parameters:
       - schema:
