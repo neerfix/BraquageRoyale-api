@@ -63,17 +63,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/User'
-            examples:
-              Update First Name:
-                value:
-                  firstName: Rebecca
-              Update Email:
-                value:
-                  email: rebecca@gmail.com
-              Update Last Name & Date of Birth:
-                value:
-                  lastName: Baker
-                  dateOfBirth: '1985-10-02'
+            examples: {}
         description: Patch user properties to update.
       tags:
         - Users
@@ -98,16 +88,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/User'
-              examples:
-                New User Bob Fellow:
-                  value:
-                    id: ABC142
-                    firstName: Bob
-                    lastName: Fellow
-                    email: bob.fellow@gmail.com
-                    dateOfBirth: '1996-08-24'
-                    emailVerified: false
-                    createDate: '2020-11-18'
+              examples: {}
         '400':
           description: Missing Required Information
         '409':
@@ -117,13 +98,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/User'
-            examples:
-              Create User Bob Fellow:
-                value:
-                  firstName: Bob
-                  lastName: Fellow
-                  email: bob.fellow@gmail.com
-                  dateOfBirth: '1996-08-24'
+            examples: {}
         description: Post the necessary fields for the API to create a new user.
       description: Create a new user.
       tags:
