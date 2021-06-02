@@ -25,32 +25,24 @@ const getOne = async (req, res, type, data) => {
     const document = db.collection(type).doc(data);
     let response = (await document.get()).data();
 
-    if(!response){
-        Http_response.HTTP_404(req, res, '', 'User')
+    if (!response) {
+        Http_response.HTTP_404(req, res, '', type)
     }
 
-    Http_response.HTTP_200(req, res, '', response)
+    return response;
 }
 
-const create = async (req, res, type, body) => {
-
-    switch (type === 'user') {
-        case true:
+const create = async (req, res, type, body, ) => {
+    await db.collection(type).doc()
+        .set({
             body
-            break;
-        case false:
-            await db.collection(type).doc()
-                .set({
-                    body
-                })
-                .then(result => {
-                    Http_response.HTTP_201(req, res, '', result);
-                })
-                .catch(error => {
-                    Http_response.HTTP_400(req, res, '', error.message);
-                })
-            break;
-    }
+        })
+        .then(result => {
+            Http_response.HTTP_201(req, res, '', result);
+        })
+        .catch(error => {
+            Http_response.HTTP_400(req, res, '', error.message);
+        })
 }
 
 module.exports = {
