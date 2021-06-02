@@ -334,13 +334,20 @@ components:
       type: object
       description: ''
       examples:
-        - id: 142
-          firstName: Alice
-          lastName: Smith
-          email: alice.smith@gmail.com
-          dateOfBirth: '1997-10-31'
-          emailVerified: true
-          signUpDate: '2019-08-24'
+        - id: string
+          firstName: string
+          lastName: string
+          email: user@example.com
+          player:
+            username: string
+            rank: string
+            exp: 0
+          status: string
+          avatar: 'http://example.com'
+          date:
+            created_at: '1997-10-31'
+            updated_at: '1997-10-31'
+            date_of_birth: '1997-10-31'
       x-tags:
         - Model
       properties:
