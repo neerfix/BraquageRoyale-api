@@ -3,6 +3,7 @@ module.exports = {
     HTTP_201,
     HTTP_400,
     HTTP_404,
+    HTTP_409,
     HTTP_500,
 }
 
@@ -19,13 +20,17 @@ function HTTP_201 (req, res, next, message) {
 }
 
 function HTTP_400 (req, res, next, field) {
-    errorMessage(res, 400, "Bad request", field + " is required")
+    errorMessage(res, 400, "Bad request", field + " is required");
 }
 
 function HTTP_404 (req, res, next, items, message) {
-    errorMessage(res, 404, "Not Found", items + " not found", message)
+    errorMessage(res, 404, "Not Found", items + " not found", message);
+}
+
+function HTTP_409 (req, res, next, items, message) {
+    errorMessage(res, 404, "Not Found", items + " not found", message);
 }
 
 function HTTP_500 (req, res, next, error) {
-    return res.status(400).send({ "code": 500, "message": "Internal server error", "reason": error.message });
+    errorMessage(res, 500, "Internal server error", error.message, '');
 }
