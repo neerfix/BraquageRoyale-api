@@ -1,5 +1,7 @@
 const admin = require('firebase-admin');
 const Http_response  = require("./http-response");
+const C = require("./Constant");
+const userRepository = require('../Repository/UsersRepository');
 
 admin.initializeApp();
 
@@ -30,17 +32,25 @@ const getOne = async (req, res, type, data) => {
     Http_response.HTTP_200(req, res, '', response)
 }
 
-const create = async (req, res, type, data, body) => {
-    await db.collection(type).doc(data)
-        .set({
+const create = async (req, res, type, body) => {
+
+    switch (type === 'user') {
+        case true:
             body
-        })
-        .then(result => {
-            Http_response.HTTP_201(req, res, '', result);
-        })
-        .catch(error => {
-            Http_response.HTTP_400(req, res, '', error.message);
-        })
+            break;
+        case false:
+            await db.collection(type).doc()
+                .set({
+                    body
+                })
+                .then(result => {
+                    Http_response.HTTP_201(req, res, '', result);
+                })
+                .catch(error => {
+                    Http_response.HTTP_400(req, res, '', error.message);
+                })
+            break;
+    }
 }
 
 module.exports = {
