@@ -19,14 +19,10 @@ jobs:
     needs: release
     steps:
     - name: auto-pull-request-merge
-      # You may pin to the exact commit or the version.
-      # uses: KeisukeYamashita/auto-pull-request-merge@f16c055886db96657279e79ce5ba7979738ac1e8
-      uses: KeisukeYamashita/auto-pull-request-merge@v1
+      uses: reitermarkus/automerge@v1.5.2
       with:
-        # Comma seperated labes that target pull request should have
-        labels: "autorelease: pending"
+        required-labels:: "autorelease: pending"
         token: ${{ secrets.TOKEN_REPO }}
-        timeoutSeconds: 300
   build:
     needs: merge
     runs-on: ubuntu-latest
