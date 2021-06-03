@@ -1,6 +1,6 @@
 {
   "name": "api",
-  "version": "0.0.1",
+  "version": "1.0.1",
   "description": "api to braquage royale project",
   "main": "functions/index.js",
   "scripts": {
@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/BraquageRoyale/api/issues"
   },
-  "homepage": "https://github.com/BraquageRoyale/api#readme"
+  "homepage": "https://github.com/BraquageRoyale/api#readme",
+  "dependencies": {
+    "uuid": "^8.3.2"
+  }
 }

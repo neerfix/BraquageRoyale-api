@@ -24,11 +24,11 @@ function getOneUser (req, res, next) {
         .catch((err) => next(err));
 }
 
-function createNewUser (req, res, next) {
+function createNewUser (req, res) {
     userService
         .createNewUser(req, res)
         .then((users) => res.send(users))
-        .catch((err) => next(err));
+        .catch(err => err);
 }
 
 function updateUserById (req, res, next) {

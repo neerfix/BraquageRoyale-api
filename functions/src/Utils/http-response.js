@@ -28,7 +28,7 @@ function HTTP_404 (req, res, next, items, message) {
 }
 
 function HTTP_409 (req, res, next, items, message) {
-    errorMessage(res, 404, "Not Found", items + " not found", message);
+    errorMessage(res, 409, "Conflict", "Email Already Taken", message);
 }
 
 function HTTP_500 (req, res, next, error) {

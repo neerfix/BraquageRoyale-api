@@ -9,6 +9,8 @@ async function getAllUsers(req, res) {
     await firebase.getAll(req, res, 'users')
 }
 
-async function getOneUserById(req, res) {
-    await firebase.getOne(req, res, 'users', req.params.userId)
+function getOneUserById(req, res, userId) {
+    firebase.getOne(req, res, 'users', userId)
+        .then(r => r)
+        .catch(e => e)
 }
