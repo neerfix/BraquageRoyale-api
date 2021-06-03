@@ -21,7 +21,7 @@ jobs:
     - name: auto-pull-request-merge
       uses: reitermarkus/automerge@v1.5.2
       with:
-        required-labels: "autorelease: pending"
+        required-labels: 'autorelease: pending'
         token: ${{ secrets.TOKEN_REPO }}
   build:
     needs: merge
