@@ -13,7 +13,7 @@ jobs:
       # uses: google-github-actions/release-please-action@f56f8adcf466bbca4a93bdb614426bde63492f6f
       uses: google-github-actions/release-please-action@v2.19.2
       with:
-        token: ${{ secrets.FIREBASE_TOKEN }}
+        token: ${{ secrets.TOKEN_REPO }}
         default-branch: master
   build:
     runs-on: ubuntu-latest
