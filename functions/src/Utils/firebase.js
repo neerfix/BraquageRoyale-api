@@ -2,6 +2,7 @@ const admin = require('firebase-admin');
 const Http_response  = require("./http-response");
 const C = require("./Constant");
 const userRepository = require('../Repository/UsersRepository');
+const uuid = require('uuid');
 
 admin.initializeApp();
 
@@ -32,17 +33,39 @@ const getOne = async (req, res, type, data) => {
     return response;
 }
 
-const create = async (req, res, type, body) => {
-    await db.collection(type).doc()
-        .set({
-            body
-        })
-        .then(result => {
-            Http_response.HTTP_201(req, res, '', result);
-        })
-        .catch(error => {
-            Http_response.HTTP_400(req, res, '', error.message);
-        })
+const create = async (req, res, type, body, userRecord) => {
+    switch (type === 'users') {
+        case true:
+            await db.collection(type).doc(userRecord.uid)
+                .set({
+                    body
+                })
+                .then(async result => {
+                    const user = await getOne(req, res, 'users', userRecord.uid);
+
+                    console.log(user);
+                    Http_response.HTTP_201(req, res, '', user);
+                })
+                .catch(error => {
+                    Http_response.HTTP_400(req, res, '', error.message);
+                })
+            break;
+        case false:
+            const uuid = uuid.v5();
+            await db.collection(type).doc(uuid)
+                .set({
+                    body
+                })
+                .then(result => {
+                    const data = getOne(req, res, type, uuid);
+
+                    Http_response.HTTP_201(req, res, '', data);
+                })
+                .catch(error => {
+                    Http_response.HTTP_400(req, res, '', error.message);
+                })
+            break;
+    }
 }
 
 module.exports = {
