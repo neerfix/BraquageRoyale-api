@@ -11,52 +11,40 @@ module.exports = {
 };
 
 async function createNewUser(req, res) {
-    let body;
-    await admin.auth().createUser({
+    const body = {
+        id: req.body.id,
+        status: C.STATUS_ACTIVE,
         email: req.body.email,
-        emailVerified: false,
-        password: req.body.password,
-        displayName: req.body.firstname + " " + req.body.lastname,
-        photoURL: req.body.avatar ? req.body.avatar : C.DEFAULT_AVATAR,
-        disabled: false,
-    }).then(async function(userRecord) {
-        body = {
-            id: userRecord.uid,
-            status: C.STATUS_INACTIVE,
-            email: req.body.email,
-            firstname: req.body.firstname,
-            lastname: req.body.lastname,
-            avatar: req.body.avatar ? req.body.avatar : C.DEFAULT_AVATAR,
-            player: {
-                username: req.body.player.username,
-                rank: req.body.player.rank ? req.body.player.rank : C.RANK_0,
-                exp: 0,
-            },
-            date: {
-                created_at: new Date(userRecord.metadata.creationTime),
-                updated_at: new Date(userRecord.metadata.creationTime),
-                date_of_birth: req.body.date.date_of_birth,
-                last_login: new Date(userRecord.metadata.creationTime),
+        firstname: req.body.firstname,
+        lastname: req.body.lastname,
+        avatar: req.body.avatar ? req.body.avatar : C.DEFAULT_AVATAR,
+        player: {
+            username: req.body.player.username,
+            rank: req.body.player.rank ? req.body.player.rank : C.RANK_0,
+            exp: 0,
+        },
+        date: {
+            created_at: new Date(),
+            updated_at: new Date(),
+            date_of_birth: req.body.date.date_of_birth,
+            last_login: new Date(),
+        }
+    };
+    await firebase.db.collection('users').doc(req.body.id)
+        .set({
+            body
+        }).then(async result =>{
+            const document = firebase.db.collection('users').doc(req.body.id);
+            let response = (await document.get()).data();
+
+            if(!response){
+                Http_response.HTTP_404(req, res, '', 'User')
             }
-        };
-        await firebase.db.collection('users').doc(userRecord.uid)
-            .set({
-                body
-            }).then(async result =>{
-                const document = firebase.db.collection('users').doc(userRecord.uid);
-                let response = (await document.get()).data();
 
-                if(!response){
-                    Http_response.HTTP_404(req, res, '', 'User')
-                }
-
-                return res.status(201).send(response);
-            }).catch(e => {
-                return {code: e.code, message: e.message};
-            });
-    }).catch(function(error) {
-        Http_response.HTTP_409(req, res, '', '', error.message);
-    })
+            return res.status(201).send(response);
+        }).catch(e => {
+            return {code: e.code, message: e.message};
+        });
 }
 
 async function updateUserById(req, res) {
