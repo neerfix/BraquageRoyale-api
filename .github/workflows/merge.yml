@@ -26,6 +26,7 @@ jobs:
         # Comma seperated labes that target pull request should have
         labels: "autorelease: pending"
         token: ${{ secrets.TOKEN_REPO }}
+        Seconds: 300
   build:
     needs: merge
     runs-on: ubuntu-latest
