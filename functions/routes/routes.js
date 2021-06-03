@@ -1,5 +1,8 @@
 const users = require("../src/Controller/UsersController")
 const maps = require("../src/Controller/MapsController")
+const characters = require("../src/Controller/CharactersController")
+const games = require("../src/Controller/GamesController")
+const objects = require("../src/Controller/ObjectsController")
 const Http_response = require("../src/Utils/http-response")
 
 module.exports = {
@@ -43,6 +46,57 @@ module.exports = {
             })
             .delete("/maps/:mapId",(req, res) => {
                 maps.deleteMapById(req, res)
+            })
+
+            // GAMES
+            .get("/games", (req, res) => {
+                games.getAllGames(req, res)
+            })
+            .get("/game/:gameId", (req, res) => {
+                games.getOneGame(req, res)
+            })
+            .post("/games/", (req, res) => {
+                games.createNewGame(req, res)
+            })
+            .patch("/games/:gameId", (req, res) => {
+                games.updateGameById(req, res)
+            })
+            .delete("/games/:gameId",(req, res) => {
+                games.deleteGameById(req, res)
+            })
+
+            // Characters
+            .get("/characters", (req, res) => {
+                characters.getAllCharacters(req, res)
+            })
+            .get("/characters/:characterId", (req, res) => {
+                characters.getOneCharacter(req, res)
+            })
+            .post("/characters/", (req, res) => {
+                characters.createNewCharacter(req, res)
+            })
+            .patch("/characters/:characterId", (req, res) => {
+                characters.updateCharacterById(req, res)
+            })
+            .delete("/characters/:characterId",(req, res) => {
+                characters.deleteCharacterById(req, res)
+            })
+
+            // Objects
+            .get("/objects", (req, res) => {
+                objects.getAllObjects(req, res)
+            })
+            .get("/objects/:objectId", (req, res) => {
+                objects.getOneObject(req, res)
+            })
+            .post("/objects/", (req, res) => {
+                objects.createNewObject(req, res)
+            })
+            .patch("/objects/:objectId", (req, res) => {
+                objects.updateObjectById(req, res)
+            })
+            .delete("/objects/:objectId",(req, res) => {
+                objects.deleteObjectById(req, res)
             })
     }
 };

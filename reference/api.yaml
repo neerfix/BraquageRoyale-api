@@ -1,9 +1,10 @@
 openapi: 3.1.0
 info:
-  title: api
+  title: API
   version: '1.0'
   contact:
     email: contact@braquage-royale.xyz
+  description: Documentation of API of braquage-royale.
 servers:
   - url: 'https://api.braquage-royale.xyz'
     description: Prod
@@ -11,14 +12,15 @@ paths:
   '/users/{userId}':
     parameters:
       - schema:
-          type: integer
+          type: string
         name: userId
         in: path
         required: true
         description: Id of an existing user.
     get:
-      summary: Get User Info by User ID
-      tags: []
+      summary: Get One
+      tags:
+        - Users
       responses:
         '200':
           description: User Found
@@ -29,7 +31,7 @@ paths:
               examples:
                 Get User Alice Smith:
                   value:
-                    id: 142
+                    id: ABC142
                     firstName: Alice
                     lastName: Smith
                     email: alice.smith@gmail.com
@@ -41,7 +43,7 @@ paths:
       operationId: get-users-userId
       description: Retrieve the information of the user with the matching user ID.
     patch:
-      summary: Update User Information
+      summary: Update
       operationId: patch-users-userId
       responses:
         '200':
@@ -50,16 +52,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/User'
-              examples:
-                Updated User Rebecca Baker:
-                  value:
-                    id: 13
-                    firstName: Rebecca
-                    lastName: Baker
-                    email: rebecca@gmail.com
-                    dateOfBirth: '1985-10-02'
-                    emailVerified: false
-                    createDate: '2019-08-24'
+              examples: {}
         '404':
           description: User Not Found
         '409':
@@ -69,32 +62,24 @@ paths:
         content:
           application/json:
             schema:
-              type: object
-              properties:
-                firstName:
-                  type: string
-                lastName:
-                  type: string
-                email:
-                  type: string
-                  description: 'If a new email is given, the user''s email verified property will be set to false.'
-                dateOfBirth:
-                  type: string
-            examples:
-              Update First Name:
-                value:
-                  firstName: Rebecca
-              Update Email:
-                value:
-                  email: rebecca@gmail.com
-              Update Last Name & Date of Birth:
-                value:
-                  lastName: Baker
-                  dateOfBirth: '1985-10-02'
+              $ref: '#/components/schemas/User'
+            examples: {}
         description: Patch user properties to update.
-  /user:
+      tags:
+        - Users
+      parameters: []
+    delete:
+      summary: Delete
+      operationId: delete-users-userId
+      responses:
+        '200':
+          description: OK
+      tags:
+        - Users
+      description: Delete user by id
+  /users:
     post:
-      summary: Create New User
+      summary: Create
       operationId: post-user
       responses:
         '200':
@@ -103,16 +88,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/User'
-              examples:
-                New User Bob Fellow:
-                  value:
-                    id: 12
-                    firstName: Bob
-                    lastName: Fellow
-                    email: bob.fellow@gmail.com
-                    dateOfBirth: '1996-08-24'
-                    emailVerified: false
-                    createDate: '2020-11-18'
+              examples: {}
         '400':
           description: Missing Required Information
         '409':
@@ -121,49 +97,264 @@ paths:
         content:
           application/json:
             schema:
-              type: object
-              properties:
-                firstName:
-                  type: string
-                lastName:
-                  type: string
-                email:
-                  type: string
-                dateOfBirth:
-                  type: string
-                  format: date
-              required:
-                - firstName
-                - lastName
-                - email
-                - dateOfBirth
-            examples:
-              Create User Bob Fellow:
-                value:
-                  firstName: Bob
-                  lastName: Fellow
-                  email: bob.fellow@gmail.com
-                  dateOfBirth: '1996-08-24'
+              $ref: '#/components/schemas/User'
+            examples: {}
         description: Post the necessary fields for the API to create a new user.
       description: Create a new user.
+      tags:
+        - Users
+    get:
+      summary: Get All
+      operationId: get-user
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/User'
+      description: Get all users
+      tags:
+        - Users
+    parameters: []
+  /maps:
+    get:
+      summary: Get All
+      tags:
+        - Maps
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Map'
+      operationId: get-maps
+      description: Get All map
+    post:
+      summary: Create
+      operationId: post-maps
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Map'
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      tags:
+        - Maps
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Map'
+        description: ''
+      description: Create a new map
+  '/maps/{mapId}':
+    parameters:
+      - schema:
+          type: string
+        name: mapId
+        in: path
+        required: true
+    get:
+      summary: Get One
+      tags:
+        - Maps
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Map'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      operationId: get-maps-mapId
+      description: Get one map by Id
+    patch:
+      summary: Update
+      operationId: patch-maps-mapId
+      responses:
+        '202':
+          description: Accepted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Map'
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      description: Update one map by id
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Map'
+      tags:
+        - Maps
+    delete:
+      summary: Delete
+      operationId: delete-maps-mapId
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      description: Delete one map by id
+      tags:
+        - Maps
+  /characters:
+    get:
+      summary: Get All
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Character'
+      operationId: get-characters
+      description: Get all character of game
+      tags:
+        - Characters
+    post:
+      summary: Create
+      operationId: post-characters
+      responses:
+        '201':
+          description: Created
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      description: Create a new character
+      tags:
+        - Characters
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Character'
+        description: ''
+  '/characters/{characterId}':
+    parameters:
+      - schema:
+          type: string
+        name: characterId
+        in: path
+        required: true
+    get:
+      summary: Get one
+      tags:
+        - Characters
+      responses:
+        '200':
+          description: OK
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      operationId: get-characters-characterId
+      description: Get one character by Id
+    patch:
+      summary: Update
+      operationId: patch-characters-characterId
+      responses:
+        '202':
+          description: Accepted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Character'
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Character'
+      tags:
+        - Characters
+      description: Update one character by id
+    delete:
+      summary: Delete
+      operationId: delete-characters-characterId
+      responses:
+        '200':
+          description: OK
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      description: Delete one character by Id
+      tags:
+        - Characters
 components:
   schemas:
     User:
-      title: User
+      title: User Model
       type: object
       description: ''
       examples:
-        - id: 142
-          firstName: Alice
-          lastName: Smith
-          email: alice.smith@gmail.com
-          dateOfBirth: '1997-10-31'
-          emailVerified: true
-          signUpDate: '2019-08-24'
+        - id: string
+          firstName: string
+          lastName: string
+          email: user@example.com
+          player:
+            username: string
+            rank: string
+            exp: 0
+          status: string
+          avatar: 'http://example.com'
+          date:
+            created_at: '1997-10-31'
+            updated_at: '1997-10-31'
+            date_of_birth: '1997-10-31'
+      x-tags:
+        - Model
       properties:
         id:
-          type: integer
+          type: string
           description: Unique identifier for the given user.
+          readOnly: true
         firstName:
           type: string
         lastName:
@@ -171,20 +362,120 @@ components:
         email:
           type: string
           format: email
-        dateOfBirth:
+        player:
+          type: object
+          properties:
+            username:
+              type: string
+            rank:
+              type: string
+              readOnly: true
+            exp:
+              type: integer
+              minimum: 0
+              readOnly: true
+          required:
+            - username
+        status:
           type: string
-          format: date
-          example: '1997-10-31'
-        emailVerified:
-          type: boolean
-          description: Set to true if the user's email has been verified.
-        createDate:
+          readOnly: true
+        avatar:
           type: string
-          format: date
-          description: The date that the user was created.
+          format: uri
+        date:
+          type: object
+          properties:
+            created_at:
+              type: string
+              format: date
+              example: '1997-10-31'
+              readOnly: true
+            updated_at:
+              type: string
+              format: date
+              example: '1997-10-31'
+              readOnly: true
+            date_of_birth:
+              type: string
+              format: date
+              example: '1997-10-31'
+          required:
+            - date_of_birth
       required:
         - id
         - firstName
         - lastName
         - email
-        - emailVerified
+    Map:
+      title: Map Model
+      type: object
+      x-tags:
+        - Model
+      description: ''
+      examples: []
+      properties:
+        id:
+          type: string
+          format: uuid
+          readOnly: true
+        date:
+          type: object
+          properties:
+            created_at:
+              type: string
+              format: date
+              readOnly: true
+            updated_at:
+              type: string
+              format: date
+        status:
+          type: string
+        vote:
+          type: number
+          format: float
+          default: 0
+          example: 4.55
+          minimum: 0
+          maximum: 5
+        name:
+          type: string
+        description:
+          type:
+            - string
+            - 'null'
+        version:
+          type: object
+          properties:
+            version_number:
+              type: string
+              default: 1.0.0
+              example: 1.0.0
+            files_url:
+              type: string
+      required:
+        - id
+        - name
+    Character:
+      title: Character
+      type: object
+      x-tags:
+        - Model
+      description: ''
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+        url_image:
+          type: string
+          format: uri
+  securitySchemes: {}
+  responses: {}
+  examples: {}
+security: []
+tags:
+  - name: API
+  - name: Characters
+  - name: Maps
+  - name: Users
