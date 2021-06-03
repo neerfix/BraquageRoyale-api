@@ -5,6 +5,16 @@ on:
   push:
     branches: [ master ]
 jobs:
+  release: 
+    runs-on: ubuntu-latest
+    steps:
+    - name: release-please-action
+      # You may pin to the exact commit or the version.
+      # uses: google-github-actions/release-please-action@f56f8adcf466bbca4a93bdb614426bde63492f6f
+      uses: google-github-actions/release-please-action@v2.19.2
+      with:
+        token: ${{ secrets.FIREBASE_TOKEN }}
+        default-branch: master
   build:
     runs-on: ubuntu-latest
     env:
