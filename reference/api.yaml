@@ -354,10 +354,9 @@ components:
         id:
           type: string
           description: Unique identifier for the given user.
-          readOnly: true
-        firstName:
+        firstname:
           type: string
-        lastName:
+        lastname:
           type: string
         email:
           type: string
@@ -403,8 +402,8 @@ components:
             - date_of_birth
       required:
         - id
-        - firstName
-        - lastName
+        - firstname
+        - lastname
         - email
     Map:
       title: Map Model
