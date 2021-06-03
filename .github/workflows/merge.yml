@@ -1,4 +1,4 @@
-name: Deploy to Google
+name: Release & Deploy
 
 # Run this workflow every time a new commit pushed to your repository
 on:
@@ -26,7 +26,7 @@ jobs:
         # Comma seperated labes that target pull request should have
         labels: "autorelease: pending"
         token: ${{ secrets.TOKEN_REPO }}
-        Seconds: 300
+        timeoutSeconds: 300
   build:
     needs: merge
     runs-on: ubuntu-latest
