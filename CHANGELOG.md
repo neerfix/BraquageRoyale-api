@@ -1,5 +1,12 @@
 # Changelog
 
+### [1.0.1](https://www.github.com/BraquageRoyale/api/compare/v1.0.0...v1.0.1) (2021-06-03)
+
+
+### Bug Fixes
+
+* user create and return data ([8cda2ae](https://www.github.com/BraquageRoyale/api/commit/8cda2ae9c78b289d7748ff9930847f4d42ad0e0b))
+
 ## 1.0.0 (2021-06-03)
 
 
