@@ -33,10 +33,7 @@ const getOne = async (req, res, type, data) => {
 const create = async (req, res, type, body, uuid) => {
     switch (type === 'users') {
         case true:
-            await db.collection(type).doc(uuid)
-                .set({
-                    body
-                })
+            await db.collection(type).doc(uuid).set(body)
                 .then(async result => {
                     const user = await getOne(req, res, 'users', uuid);
 
