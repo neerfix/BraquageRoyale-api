@@ -14,33 +14,33 @@ function getAllMaps (req, res) {
     mapRepository
         .getAllMaps(req, res)
         .then((maps) => res.send(maps))
-        .catch(err => err);
+        .catch(err => console.error(err));
 }
 
 function getOneMap (req, res) {
     mapRepository
         .getOneMapById(req, res)
         .then((maps) => res.send(maps))
-        .catch(err => err);
+        .catch(err => console.error(err));
 }
 
 function createNewMap (req, res) {
     mapService
         .createNewMap(req, res)
         .then((maps) => res.send(maps))
-        .catch(err => err);
+        .catch(err => console.error(err));
 }
 
 function updateMapById (req, res) {
     mapService
         .updateMapById(req, res)
         .then((maps) => res.send(maps))
-        .catch(err => err);
+        .catch(err => console.error(err));
 }
 
 function deleteMapById (req, res) {
     mapService
         .deleteMapById(req, res)
         .then((maps) => res.send(maps))
-        .catch(err => err);
+        .catch(err => console.error(err));
 }

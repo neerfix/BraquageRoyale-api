@@ -14,33 +14,33 @@ function getAllGames (req, res) {
     gameRepository
         .getAllGames(req, res)
         .then((games) => res.send(games))
-        .catch(err => err);
+        .catch(err => console.error(err));
 }
 
 function getOneGame(req, res) {
     gameRepository
         .getOneGameById(req, res)
         .then((games) => res.send(games))
-        .catch(err => err);
+        .catch(err => console.error(err));
 }
 
 function createNewGame (req, res) {
     gameService
         .createNewGame(req, res)
         .then((games) => res.send(games))
-        .catch(err => err);
+        .catch(err => console.error(err));
 }
 
 function updateGameById (req, res) {
     gameService
         .updateGameById(req, res)
         .then((games) => res.send(games))
-        .catch(err => err);
+        .catch(err => console.error(err));
 }
 
 function deleteGameById (req, res) {
     gameService
         .deleteGameById(req, res)
         .then((games) => res.send(games))
-        .catch(err => err);
+        .catch(err => console.error(err));
 }

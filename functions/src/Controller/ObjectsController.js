@@ -14,33 +14,33 @@ function getAllObjects (req, res) {
     objectRepository
         .getAllObjects(req, res)
         .then((maps) => res.send(maps))
-        .catch(err => err);
+        .catch(err => console.error(err));
 }
 
 function getOneObject (req, res) {
     objectRepository
         .getOneObjectById(req, res)
         .then((objects) => res.send(objects))
-        .catch(err => err);
+        .catch(err => console.error(err));
 }
 
 function createNewObject (req, res) {
     objectService
         .createNewObject(req, res)
         .then((objects) => res.send(objects))
-        .catch(err => err);
+        .catch(err => console.error(err));
 }
 
 function updateObjectById (req, res) {
     objectService
         .updateObjectById(req, res)
         .then((objects) => res.send(objects))
-        .catch(err => err);
+        .catch(err => console.error(err));
 }
 
 function deleteObjectById (req, res) {
     objectService
         .deleteObjectById(req, res)
         .then((objects) => res.send(objects))
-        .catch(err => err);
+        .catch(err => console.error(err));
 }
