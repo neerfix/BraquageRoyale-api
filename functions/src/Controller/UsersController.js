@@ -23,8 +23,8 @@ function getAllUsers (req, res) {
 
 function getOneUser (req, res) {
     userRepository
-        .getOneUserById(req, res)
-        .then((users) => res.send(users))
+        .getOneUserById(req, res, req.params.userId)
+        .then((user) => res.send(user))
         .catch(err => {
             console.error(err)
             Http_response.HTTP_500(req, res, '', err)

@@ -1,4 +1,5 @@
 const firebase = require('../Utils/firebase');
+const Http_response = require("../Utils/http-response");
 
 module.exports = {
     getAllMaps,
@@ -10,5 +11,7 @@ async function getAllMaps(req, res) {
 }
 
 async function getOneMapById(req, res) {
-    await firebase.getOne(req, res, 'maps', req.params.mapId)
+    const map = await firebase.getOne(req, res, 'maps', req.params.mapId)
+
+    Http_response.HTTP_200(req, res, '', map)
 }
