@@ -1,6 +1,7 @@
 const {db} = require("../Utils/firebase");
 const mapRepository = require("../Repository/MapsRepository");
 const firebase = require('../Utils/firebase');
+const C = require("../Utils/Constant");
 const uuid = require('uuid');
 const admin = require('firebase-admin');
 const Http_response = require("../Utils/http-response");
@@ -20,11 +21,11 @@ async function createNewMap(req, res) {
             updated_at: new Date(),
         },
         name: req.body.name,
-        description: req.body.description,
-        status: req.body.status,
-        vote: "",
+        description: req.body.description ? req.body.description : "",
+        status: C.STATUS_ACTIVE,
+        vote: 0,
         version: {
-            version_number: "" ,
+            version_number: "1.0.0" ,
             files_url: '',
         }
     }
