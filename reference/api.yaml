@@ -437,6 +437,8 @@ components:
       title: Game
       type: object
       examples: []
+      x-tags:
+        - Model
       properties:
         id:
           type: string
@@ -444,9 +446,6 @@ components:
           readOnly: true
         date:
           type: object
-          required:
-            - created_at
-            - updated_at
           properties:
             created_at:
               format: date
@@ -495,9 +494,6 @@ components:
                 default: 0
               coordinates:
                 type: object
-                required:
-                  - x
-                  - 'y'
                 properties:
                   x:
                     type: number
@@ -513,25 +509,17 @@ components:
                 format: uuid
             required:
               - user_id
-              - vitality
-              - attack
-              - kills
-              - coordinates
               - is_spectate
-        is_active:
-          type: boolean
-          default: true
+              - caracter_id
+        status:
+          type: string
+          default: ACTIVED
       required:
-        - id
-        - date
         - name
         - max_players
         - is_private
         - map_id
         - players
-        - is_active
-      x-tags:
-        - Model
     User:
       title: User Model
       type: object
