@@ -52,7 +52,7 @@ module.exports = {
             .get("/games", (req, res) => {
                 games.getAllGames(req, res)
             })
-            .get("/game/:gameId", (req, res) => {
+            .get("/games/:gameId", (req, res) => {
                 games.getOneGame(req, res)
             })
             .post("/games/", (req, res) => {
