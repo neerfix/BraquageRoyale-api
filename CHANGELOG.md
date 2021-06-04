@@ -1,5 +1,12 @@
 # Changelog
 
+### [1.0.2](https://www.github.com/BraquageRoyale/api/compare/v1.0.1...v1.0.2) (2021-06-04)
+
+
+### Bug Fixes
+
+* remove next to controller ([4ba65f7](https://www.github.com/BraquageRoyale/api/commit/4ba65f70750dcc88cf38a4e59a89f080aeb875f5))
+
 ### [1.0.1](https://www.github.com/BraquageRoyale/api/compare/v1.0.0...v1.0.1) (2021-06-03)
 
 
