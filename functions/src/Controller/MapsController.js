@@ -10,37 +10,37 @@ module.exports = {
     deleteMapById
 }
 
-function getAllMaps (req, res, next) {
+function getAllMaps (req, res) {
     mapRepository
         .getAllMaps(req, res)
         .then((maps) => res.send(maps))
-        .catch((err) => next(err));
+        .catch(err => err);
 }
 
-function getOneMap (req, res, next) {
+function getOneMap (req, res) {
     mapRepository
         .getOneMapById(req, res)
         .then((maps) => res.send(maps))
-        .catch((err) => next(err));
+        .catch(err => err);
 }
 
-function createNewMap (req, res, next) {
+function createNewMap (req, res) {
     mapService
         .createNewMap(req, res)
         .then((maps) => res.send(maps))
-        .catch((err) => next(err));
+        .catch(err => err);
 }
 
-function updateMapById (req, res, next) {
+function updateMapById (req, res) {
     mapService
         .updateMapById(req, res)
         .then((maps) => res.send(maps))
-        .catch((err) => next(err));
+        .catch(err => err);
 }
 
-function deleteMapById (req, res, next) {
+function deleteMapById (req, res) {
     mapService
         .deleteMapById(req, res)
         .then((maps) => res.send(maps))
-        .catch((err) => next(err));
+        .catch(err => err);
 }

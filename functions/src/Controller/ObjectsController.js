@@ -10,37 +10,37 @@ module.exports = {
     deleteObjectById
 }
 
-function getAllObjects (req, res, next) {
+function getAllObjects (req, res) {
     objectRepository
         .getAllObjects(req, res)
         .then((maps) => res.send(maps))
-        .catch((err) => next(err));
+        .catch(err => err);
 }
 
-function getOneObject (req, res, next) {
+function getOneObject (req, res) {
     objectRepository
         .getOneObjectById(req, res)
         .then((objects) => res.send(objects))
-        .catch((err) => next(err));
+        .catch(err => err);
 }
 
-function createNewObject (req, res, next) {
+function createNewObject (req, res) {
     objectService
         .createNewObject(req, res)
         .then((objects) => res.send(objects))
-        .catch((err) => next(err));
+        .catch(err => err);
 }
 
-function updateObjectById (req, res, next) {
+function updateObjectById (req, res) {
     objectService
         .updateObjectById(req, res)
         .then((objects) => res.send(objects))
-        .catch((err) => next(err));
+        .catch(err => err);
 }
 
-function deleteObjectById (req, res, next) {
+function deleteObjectById (req, res) {
     objectService
         .deleteObjectById(req, res)
         .then((objects) => res.send(objects))
-        .catch((err) => next(err));
+        .catch(err => err);
 }

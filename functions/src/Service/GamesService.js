@@ -1,6 +1,7 @@
 const firebase = require('../Utils/firebase');
-const admin = require('firebase-admin');
 const Http_response = require("../Utils/http-response");
+const C = require("../Utils/Constant");
+const uuid = require('uuid');
 
 module.exports = {
     createNewGame,
@@ -9,7 +10,34 @@ module.exports = {
 };
 
 async function createNewGame(req, res) {
-    Http_response.HTTP_200(req, res, '', 'hello')
+    const uid = uuid.v5();
+    const players = [];
+    console.log(req);
+    console.log(req.body.players);
+    req.body.players.map(index => {
+        console.log(index);
+        // let player;
+        // player = {
+        //     key
+        // }
+    })
+
+    const body = {
+        id: uid,
+        date: {
+            created_at: new Date(),
+            updated_at: new Date(),
+            finished_at: new Date(),
+        },
+        name: req.body.name,
+        max_player: req.body.max_player,
+        is_private: req.body.is_private,
+        invite_code: uuid.v3,
+        map_id: req.body.map_id,
+        players: req.body.players,
+        status: C.STATUS_ACTIVE
+    }
+    // await firebase.create(req, res, 'games', body, uuid)
 }
 
 async function updateGameById(req, res) {

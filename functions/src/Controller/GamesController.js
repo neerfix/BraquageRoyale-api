@@ -10,37 +10,37 @@ module.exports = {
     deleteGameById
 }
 
-function getAllGames (req, res, next) {
+function getAllGames (req, res) {
     gameRepository
         .getAllGames(req, res)
         .then((games) => res.send(games))
-        .catch((err) => next(err));
+        .catch(err => err);
 }
 
-function getOneGame(req, res, next) {
+function getOneGame(req, res) {
     gameRepository
         .getOneGameById(req, res)
         .then((games) => res.send(games))
-        .catch((err) => next(err));
+        .catch(err => err);
 }
 
-function createNewGame (req, res, next) {
+function createNewGame (req, res) {
     gameService
         .createNewGame(req, res)
         .then((games) => res.send(games))
-        .catch((err) => next(err));
+        .catch(err => err);
 }
 
-function updateGameById (req, res, next) {
+function updateGameById (req, res) {
     gameService
         .updateGameById(req, res)
         .then((games) => res.send(games))
-        .catch((err) => next(err));
+        .catch(err => err);
 }
 
-function deleteGameById (req, res, next) {
+function deleteGameById (req, res) {
     gameService
         .deleteGameById(req, res)
         .then((games) => res.send(games))
-        .catch((err) => next(err));
+        .catch(err => err);
 }
