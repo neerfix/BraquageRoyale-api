@@ -1,5 +1,30 @@
 # Changelog
 
+## [1.1.0](https://www.github.com/BraquageRoyale/api/compare/v1.0.1...v1.1.0) (2021-06-04)
+
+
+### Features
+
+* add console.error in controller ([d215aec](https://www.github.com/BraquageRoyale/api/commit/d215aecfcd59ef212b6e6b361ffa5bb868b89d5e))
+* create a new game: ([d91519b](https://www.github.com/BraquageRoyale/api/commit/d91519b228b11d04930744249be47c3c65fb38b7))
+* createNewMap on map service ([78953f9](https://www.github.com/BraquageRoyale/api/commit/78953f96b213b846d7ffedba8a80f7d585f7d9ba))
+* function createNewMap is working ([bbfe340](https://www.github.com/BraquageRoyale/api/commit/bbfe34023489d055fda4bbdd55c0a30e244983b0))
+* return one data ([a7a8f90](https://www.github.com/BraquageRoyale/api/commit/a7a8f906a1fdeba8c665f7d2a9848b6501a497a6))
+
+
+### Bug Fixes
+
+* cors ([4f424a0](https://www.github.com/BraquageRoyale/api/commit/4f424a031512d6caa30ab702e163553422841fb3))
+* cors 2 ([29a75c4](https://www.github.com/BraquageRoyale/api/commit/29a75c4c3d14c6110428fe2db326c028fe0170f5))
+* cors 3 ([3137b31](https://www.github.com/BraquageRoyale/api/commit/3137b31dda9272dbeb1a0da9f8ed038dee2f6d0a))
+* cors 4 ([6c1d108](https://www.github.com/BraquageRoyale/api/commit/6c1d1082a6fe54a1ed3bebe0744de90c04c52dc2))
+* cors to allow braquage-royale site ([4be2d93](https://www.github.com/BraquageRoyale/api/commit/4be2d93af52084fc769f6cb64c74559dcb0486ec))
+* remove next to controller ([4ba65f7](https://www.github.com/BraquageRoyale/api/commit/4ba65f70750dcc88cf38a4e59a89f080aeb875f5))
+* return error ([9785c8f](https://www.github.com/BraquageRoyale/api/commit/9785c8f915c69d8f488a357072e8b9fc5b7afae0))
+* some details when creating a map ([3ef617a](https://www.github.com/BraquageRoyale/api/commit/3ef617a9a07b02da64b583d9b57472051f3b7d96))
+* update npm package to fix high severity ([8f2a4b2](https://www.github.com/BraquageRoyale/api/commit/8f2a4b2801c6ba8d039e6c51d5fa57577ad47717))
+* users data in database ([9db2c9a](https://www.github.com/BraquageRoyale/api/commit/9db2c9aa83087cae9ea5a50a4d1fb51032100489))
+
 ### [1.0.1](https://www.github.com/BraquageRoyale/api/compare/v1.0.0...v1.0.1) (2021-06-03)
 
 
