@@ -47,17 +47,14 @@ const create = async (req, res, type, body, uuid) => {
                 })
             break;
         case false:
-            await db.collection(type).doc(uuid)
-                .set({
-                    body
-                })
+            await db.collection(type).doc(uuid).set(body)
                 .then(async result => {
                     const data = await getOne(req, res, type, uuid);
 
                     Http_response.HTTP_201(req, res, '', data);
                 })
                 .catch(error => {
-                    Http_response.HTTP_400(req, res, '', error.message);
+                    Http_response.HTTP_500(req, res, '', error);
                 })
             break;
     }

@@ -20,17 +20,17 @@ function HTTP_201 (req, res, next, message) {
 }
 
 function HTTP_400 (req, res, next, field) {
-    errorMessage(res, 400, "Bad request", field + " is required");
+    return errorMessage(res, 400, "Bad request", field + " is required");
 }
 
 function HTTP_404 (req, res, next, items, message) {
-    errorMessage(res, 404, "Not Found", items + " not found", message);
+    return errorMessage(res, 404, "Not Found", items + " not found", message);
 }
 
 function HTTP_409 (req, res, next, items, message) {
-    errorMessage(res, 409, "Conflict", "Email Already Taken", message);
+    return errorMessage(res, 409, "Conflict", "Email Already Taken", message);
 }
 
 function HTTP_500 (req, res, next, error) {
-    errorMessage(res, 500, "Internal server error", error.message, '');
+    return errorMessage(res, 500, "Internal server error", error.message, '');
 }

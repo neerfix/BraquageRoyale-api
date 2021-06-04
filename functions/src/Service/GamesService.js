@@ -10,18 +10,14 @@ module.exports = {
 };
 
 async function createNewGame(req, res) {
-    const uid = uuid.v5();
+    const uid = uuid.v4();
     const players = [];
-    console.log(req);
-    console.log(req.body.players);
     req.body.players.map(index => {
-        console.log(index);
-        // let player;
-        // player = {
-        //     key
-        // }
+        index['attack'] = 10;
+        index['vitality'] = 100;
+        index['kills'] = 0;
+        players.push(index)
     })
-
     const body = {
         id: uid,
         date: {
@@ -32,12 +28,12 @@ async function createNewGame(req, res) {
         name: req.body.name,
         max_player: req.body.max_player,
         is_private: req.body.is_private,
-        invite_code: uuid.v3,
+        invite_code: uuid.v4(),
         map_id: req.body.map_id,
-        players: req.body.players,
+        players: players,
         status: C.STATUS_ACTIVE
     }
-    // await firebase.create(req, res, 'games', body, uuid)
+    await firebase.create(req, res, 'games', body, uid)
 }
 
 async function updateGameById(req, res) {
