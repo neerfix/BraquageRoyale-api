@@ -10,18 +10,18 @@ module.exports = {
     deleteUserById
 }
 
-function getAllUsers (req, res, next) {
+function getAllUsers (req, res) {
     userRepository
         .getAllUsers(req, res)
         .then((users) => res.send(users))
-        .catch((err) => next(err));
+        .catch(err => err);
 }
 
-function getOneUser (req, res, next) {
+function getOneUser (req, res) {
     userRepository
         .getOneUserById(req, res)
         .then((users) => res.send(users))
-        .catch((err) => next(err));
+        .catch(err => err);
 }
 
 function createNewUser (req, res) {
@@ -31,16 +31,16 @@ function createNewUser (req, res) {
         .catch(err => err);
 }
 
-function updateUserById (req, res, next) {
+function updateUserById (req, res) {
     userService
         .updateUserById(req, res)
         .then((users) => res.send(users))
-        .catch((err) => next(err));
+        .catch(err => err);
 }
 
-function deleteUserById (req, res, next) {
+function deleteUserById (req, res) {
     userService
         .deleteUserById(req, res)
         .then((users) => res.send(users))
-        .catch((err) => next(err));
+        .catch(err => err);
 }

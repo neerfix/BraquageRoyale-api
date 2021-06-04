@@ -39,7 +39,7 @@ async function createNewUser(req, res) {
                 last_login: new Date(userRecord.metadata.creationTime),
             }
         };
-        await firebase.create(req, res, 'users', body, userRecord);
+        await firebase.create(req, res, 'users', body, userRecord.uid);
     }).catch(function(error) {
         Http_response.HTTP_409(req, res, '', '', error.message);
     });

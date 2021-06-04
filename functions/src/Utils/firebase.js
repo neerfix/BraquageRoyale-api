@@ -1,8 +1,5 @@
 const admin = require('firebase-admin');
 const Http_response  = require("./http-response");
-const C = require("./Constant");
-const userRepository = require('../Repository/UsersRepository');
-const uuid = require('uuid');
 
 admin.initializeApp();
 
@@ -33,17 +30,16 @@ const getOne = async (req, res, type, data) => {
     return response;
 }
 
-const create = async (req, res, type, body, userRecord) => {
+const create = async (req, res, type, body, uuid) => {
     switch (type === 'users') {
         case true:
-            await db.collection(type).doc(userRecord.uid)
+            await db.collection(type).doc(uuid)
                 .set({
                     body
                 })
                 .then(async result => {
-                    const user = await getOne(req, res, 'users', userRecord.uid);
+                    const user = await getOne(req, res, 'users', uuid);
 
-                    console.log(user);
                     Http_response.HTTP_201(req, res, '', user);
                 })
                 .catch(error => {
@@ -51,18 +47,14 @@ const create = async (req, res, type, body, userRecord) => {
                 })
             break;
         case false:
-            const uuid = uuid.v5();
-            await db.collection(type).doc(uuid)
-                .set({
-                    body
-                })
-                .then(result => {
-                    const data = getOne(req, res, type, uuid);
+            await db.collection(type).doc(uuid).set(body)
+                .then(async result => {
+                    const data = await getOne(req, res, type, uuid);
 
                     Http_response.HTTP_201(req, res, '', data);
                 })
                 .catch(error => {
-                    Http_response.HTTP_400(req, res, '', error.message);
+                    Http_response.HTTP_500(req, res, '', error);
                 })
             break;
     }

@@ -10,37 +10,37 @@ module.exports = {
     deleteCharacterById
 }
 
-function getAllCharacters (req, res, next) {
+function getAllCharacters (req, res) {
     characterRepository
         .getAllCharacters(req, res)
         .then((characters) => res.send(characters))
-        .catch((err) => next(err));
+        .catch(err => err);
 }
 
-function getOneCharacter (req, res, next) {
+function getOneCharacter (req, res) {
     characterRepository
         .getOneCharacterById(req, res)
         .then((characters) => res.send(characters))
-        .catch((err) => next(err));
+        .catch(err => err);
 }
 
-function createNewCharacter (req, res, next) {
+function createNewCharacter (req, res) {
     characterService
         .createNewCharacter(req, res)
         .then((characters) => res.send(characters))
-        .catch((err) => next(err));
+        .catch(err => err);
 }
 
-function updateCharacterById (req, res, next) {
+function updateCharacterById (req, res) {
     characterService
         .updateCharacterById(req, res)
         .then((characters) => res.send(characters))
-        .catch((err) => next(err));
+        .catch(err => err);
 }
 
-function deleteCharacterById (req, res, next) {
+function deleteCharacterById (req, res) {
     characterService
         .deleteCharacterById(req, res)
         .then((characters) => res.send(characters))
-        .catch((err) => next(err));
+        .catch(err => err);
 }
