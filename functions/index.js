@@ -5,10 +5,11 @@ const bodyParser = require('body-parser');
 const routes = require("./routes/routes");
 const app = express();
 
+let whitelist = ['https://beta.braquage-royale.xyz', 'https://www.braquage-royale.xyz', 'https://acp.braquage-royale.xyz']
 app.enable('trust proxy')
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-app.use(cors());
+app.use(cors(whitelist));
 
 routes.crud(app);
 
