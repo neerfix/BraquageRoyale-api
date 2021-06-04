@@ -11,7 +11,9 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 app.use(cors({
-    origin: '*',
+    origin: [
+        whitelist
+    ],
 }))
 
 routes.crud(app);
