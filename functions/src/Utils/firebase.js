@@ -57,9 +57,22 @@ const create = async (req, res, type, body, uuid) => {
     }
 }
 
+const update = async (req, res, type, body, uuid) => {
+    await db.collection(type).doc(uuid).update(body)
+        .then(async result => {
+            const data = await getOne(req, res, type, uuid);
+
+            Http_response.HTTP_200(req, res, '', data);
+        })
+        .catch(error => {
+            Http_response.HTTP_500(req, res, '', error);
+        })
+}
+
 module.exports = {
     db,
     getAll,
     getOne,
-    create
+    create,
+    update
 };

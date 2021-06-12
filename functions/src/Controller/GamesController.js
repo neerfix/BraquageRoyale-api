@@ -47,7 +47,6 @@ function updateGameById (req, res) {
         .then((games) => res.send(games))
         .catch(err => {
             console.error(err)
-            Http_response.HTTP_500(req, res, '', err)
         });
 }
 
