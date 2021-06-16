@@ -27,7 +27,7 @@ async function createNewCharacter(req, res) {
 
 async function updateCharacterById(req, res) {
     requireCheck.check(req, res, req.body.name, 'name', 'string')
-    requireCheck.check(req, res, req.body.url_image, 'name', 'string')
+    requireCheck.check(req, res, req.body.url_image, 'url_image', 'string')
 
     const body = {
         date: {
