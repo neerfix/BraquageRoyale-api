@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.0](https://www.github.com/BraquageRoyale/api/compare/v1.1.0...v1.2.0) (2021-06-12)
+
+
+### Features
+
+* add require check to type and add patch to game data ([64a9636](https://www.github.com/BraquageRoyale/api/commit/64a9636ff26fea098d54427f0b6105710b397ee0))
+
 ## [1.1.0](https://www.github.com/BraquageRoyale/api/compare/v1.0.1...v1.1.0) (2021-06-04)
 
 
