@@ -4,7 +4,6 @@ const characters = require("../src/Controller/CharactersController")
 const games = require("../src/Controller/GamesController")
 const objects = require("../src/Controller/ObjectsController")
 const Http_response = require("../src/Utils/http-response")
-const cors = require('cors');
 
 module.exports = {
 
