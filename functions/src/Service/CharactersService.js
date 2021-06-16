@@ -11,7 +11,7 @@ module.exports = {
 async function createNewCharacter(req, res) {
     const uid = uuid.v4();
     requireCheck.check(req, res, req.body.name, 'name', 'string')
-    requireCheck.check(req, res, req.body.url_image, 'name', 'string')
+    requireCheck.check(req, res, req.body.url_image, 'url_image', 'string')
 
     const body = {
         id: uid,
@@ -22,7 +22,7 @@ async function createNewCharacter(req, res) {
         name: req.body.name,
         url_image: req.body.url_image
     }
-    await firebase.create(req, res, 'games', body, uid)
+    await firebase.create(req, res, 'characters', body, uid)
 }
 
 async function updateCharacterById(req, res) {
@@ -36,7 +36,7 @@ async function updateCharacterById(req, res) {
         name: req.body.name,
         url_image: req.body.url_image
     }
-    await firebase.update(req, res, 'games', body, req.params.characterId)
+    await firebase.update(req, res, 'characters', body, req.params.characterId)
 }
 
 async function deleteCharacterById(req, res) {
