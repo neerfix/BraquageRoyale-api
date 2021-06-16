@@ -642,6 +642,8 @@ components:
               example: 1.0.0
             files_url:
               type: string
+          required:
+            - files_url
       required:
         - id
         - name
@@ -660,6 +662,9 @@ components:
         url_image:
           type: string
           format: uri
+      required:
+        - name
+        - url_image
   securitySchemes: {}
   responses: {}
   examples: {}
