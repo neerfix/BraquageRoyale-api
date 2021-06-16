@@ -1,4 +1,5 @@
 const firebase = require('../Utils/firebase');
+const Http_response = require("../Utils/http-response");
 
 module.exports = {
     getAllGames,
@@ -10,5 +11,7 @@ async function getAllGames(req, res) {
 }
 
 async function getOneGameById(req, res) {
-    await firebase.getOne(req, res, 'games', req.params.gameId)
+    const game = await firebase.getOne(req, res, 'games', req.params.gameId)
+
+    Http_response.HTTP_200(req, res, '', game)
 }

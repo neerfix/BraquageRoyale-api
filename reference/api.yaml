@@ -81,8 +81,8 @@ paths:
       summary: Update
       operationId: patch-ganes-gameId
       responses:
-        '202':
-          description: Accepted
+        '200':
+          description: OK
         '400':
           description: Bad Request
         '401':
@@ -96,6 +96,16 @@ paths:
       tags:
         - Games
       description: Update one game by id
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Game'
+          application/xml:
+            schema:
+              type: object
+              properties: {}
+        description: ''
     delete:
       summary: Delete
       operationId: delete-ganes-gameId

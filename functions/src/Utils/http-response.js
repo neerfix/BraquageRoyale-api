@@ -19,8 +19,8 @@ function HTTP_201 (req, res, next, message) {
     return res.status(201).send(message)
 }
 
-function HTTP_400 (req, res, next, field) {
-    return errorMessage(res, 400, "Bad request", field + " is required");
+function HTTP_400 (req, res, message) {
+    return errorMessage(res, 400, "Bad request", message);
 }
 
 function HTTP_404 (req, res, next, items, message) {

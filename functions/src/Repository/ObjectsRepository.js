@@ -1,4 +1,5 @@
 const firebase = require('../Utils/firebase');
+const Http_response = require("../Utils/http-response");
 
 module.exports = {
     getAllObjects,
@@ -10,5 +11,7 @@ async function getAllObjects(req, res) {
 }
 
 async function getOneObjectById(req, res) {
-    await firebase.getOne(req, res, 'objects', req.params.objectId)
+    const objet = await firebase.getOne(req, res, 'objects', req.params.objectId)
+
+    Http_response.HTTP_200(req, res, '', objet)
 }
