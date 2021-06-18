@@ -1,5 +1,12 @@
 # Changelog
 
+### [1.3.3](https://www.github.com/BraquageRoyale/api/compare/v1.3.2...v1.3.3) (2021-06-18)
+
+
+### Bug Fixes
+
+* duplicate action workflows ([039cfeb](https://www.github.com/BraquageRoyale/api/commit/039cfebc7d05f5119f5978d5deab691a101fa9da))
+
 ### [1.3.2](https://www.github.com/BraquageRoyale/api/compare/v1.3.1...v1.3.2) (2021-06-18)
 
 
