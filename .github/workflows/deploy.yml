@@ -1,5 +1,13 @@
+name: Release & Deploy
+
+# Run this workflow every time a new commit pushed to your repository
+on:
+  release:
+    types: [published]
+
+jobs:
   build:
-    needs: merge
+    if: github.event.pull_request.merged
     runs-on: ubuntu-latest
     env:
       working-directory: ./functions
