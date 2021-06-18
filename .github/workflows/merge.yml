@@ -1,4 +1,4 @@
-name: Release & Deploy
+name: create a release on merge
 
 # Run this workflow every time a new commit pushed to your repository
 on:
