@@ -1,8 +1,8 @@
-const firebase = require('../Utils/firebase');
-const Http_response = require("../Utils/http-response");
-const C = require("../Utils/Constant");
+const firebase = require('../../Utils/firebase');
+const Http_response = require("../../Utils/http-response");
+const C = require("../../Utils/Constant");
 const uuid = require('uuid');
-const requireCheck = require('../Utils/RequireCheck');
+const requireCheck = require('../../Utils/RequireCheck');
 
 module.exports = {
     createNewGame,

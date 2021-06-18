@@ -1,7 +1,7 @@
 const users = require("../src/Controller/UsersController")
 const maps = require("../src/Controller/MapsController")
 const characters = require("../src/Controller/CharactersController")
-const games = require("../src/Controller/GamesController")
+const games = require("../src/Controller/Games/GamesController")
 const objects = require("../src/Controller/ObjectsController")
 const Http_response = require("../src/Utils/http-response")
 
