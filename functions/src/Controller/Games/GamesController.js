@@ -22,6 +22,7 @@ function getAllGames (req, res) {
             Http_response.HTTP_500(req, res, '', err)
         });
 }
+
 function getOneInvite (req, res) {
     gameRepository
         .getOneInvite(req, res)
@@ -51,6 +52,7 @@ function createNewGame (req, res) {
             Http_response.HTTP_500(req, res, '', err)
         });
 }
+
 function createNewInvite (req, res) {
     gameService
         .createNewInvite(req, res)
