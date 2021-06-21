@@ -1,5 +1,21 @@
 # Changelog
 
+## [1.4.0](https://www.github.com/BraquageRoyale/api/compare/v1.3.3...v1.4.0) (2021-06-21)
+
+
+### Features
+
+* add log foreach action in game ([3ea7f5c](https://www.github.com/BraquageRoyale/api/commit/3ea7f5c7f356e4a17e4022ad05a33826ead5fa2c))
+* add route to create turn of player ([772fc99](https://www.github.com/BraquageRoyale/api/commit/772fc99a715556ad5d92d34ac18a8c0ce996aeac))
+* list of all game by UserId ([a76a9f4](https://www.github.com/BraquageRoyale/api/commit/a76a9f48ad27e3b4eae1db6b44eb5b2b3cb88e5f))
+
+### [1.3.3](https://www.github.com/BraquageRoyale/api/compare/v1.3.2...v1.3.3) (2021-06-18)
+
+
+### Bug Fixes
+
+* duplicate action workflows ([039cfeb](https://www.github.com/BraquageRoyale/api/commit/039cfebc7d05f5119f5978d5deab691a101fa9da))
+
 ### [1.3.2](https://www.github.com/BraquageRoyale/api/compare/v1.3.1...v1.3.2) (2021-06-18)
 
 
