@@ -8,12 +8,22 @@ module.exports = {
     getOneGame,
     createNewGame,
     updateGameById,
-    deleteGameById
+    deleteGameById,
+    getOneInviteById
 }
 
 function getAllGames (req, res) {
     gameRepository
         .getAllGames(req, res)
+        .then((games) => res.send(games))
+        .catch(err => {
+            console.error(err)
+            Http_response.HTTP_500(req, res, '', err)
+        });
+}
+function getOneInviteById (req, res) {
+    gameRepository
+        .getOneInviteById(req, res)
         .then((games) => res.send(games))
         .catch(err => {
             console.error(err)
