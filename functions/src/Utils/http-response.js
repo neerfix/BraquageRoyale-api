@@ -32,5 +32,5 @@ function HTTP_409 (req, res, next, items, message) {
 }
 
 function HTTP_500 (req, res, next, error) {
-    return errorMessage(res, 500, "Internal server error", error.message, '');
+    return errorMessage(res, 500, "Internal server error", error.message ? error.message : error, '');
 }
