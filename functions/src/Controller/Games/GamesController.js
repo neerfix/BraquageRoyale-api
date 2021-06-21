@@ -1,6 +1,6 @@
-const gameService = require("../Service/GamesService");
-const gameRepository = require("../Repository/GamesRepository");
-const Http_response = require('../Utils/http-response');
+const gameService = require("../../Service/Games/GamesService");
+const gameRepository = require("../../Repository/GamesRepository");
+const Http_response = require('../../Utils/http-response');
 
 // routes -> /games/
 module.exports = {

@@ -1,8 +1,8 @@
-const firebase = require('../Utils/firebase');
-const Http_response = require("../Utils/http-response");
-const C = require("../Utils/Constant");
+const firebase = require('../../Utils/firebase');
+const Http_response = require("../../Utils/http-response");
+const C = require("../../Utils/Constant");
 const uuid = require('uuid');
-const requireCheck = require('../Utils/RequireCheck');
+const requireCheck = require('../../Utils/RequireCheck');
 
 module.exports = {
     createNewGame,
@@ -29,7 +29,6 @@ async function createNewGame(req, res) {
         name: req.body.name,
         max_player: req.body.max_player,
         is_private: req.body.is_private,
-        invite_code: uuid.v4(),
         map_id: req.body.map_id,
         players: players,
         status: C.STATUS_ACTIVE
@@ -55,7 +54,6 @@ async function updateGameById(req, res) {
         name: req.body.name,
         max_player: req.body.max_player,
         is_private: req.body.is_private,
-        invite_code: uuid.v4(),
         map_id: req.body.map_id,
         players: req.body.players,
         status: C.STATUS_ACTIVE

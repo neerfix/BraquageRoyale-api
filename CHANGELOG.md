@@ -1,5 +1,43 @@
 # Changelog
 
+### [1.3.3](https://www.github.com/BraquageRoyale/api/compare/v1.3.2...v1.3.3) (2021-06-18)
+
+
+### Bug Fixes
+
+* duplicate action workflows ([039cfeb](https://www.github.com/BraquageRoyale/api/commit/039cfebc7d05f5119f5978d5deab691a101fa9da))
+
+### [1.3.2](https://www.github.com/BraquageRoyale/api/compare/v1.3.1...v1.3.2) (2021-06-18)
+
+
+### Bug Fixes
+
+* routes ([cd35b5d](https://www.github.com/BraquageRoyale/api/commit/cd35b5dcac771c8614cbb31e773231db3fad0235))
+
+### [1.3.1](https://www.github.com/BraquageRoyale/api/compare/v1.3.0...v1.3.1) (2021-06-18)
+
+
+### Bug Fixes
+
+* test ([cd6708f](https://www.github.com/BraquageRoyale/api/commit/cd6708f7a0b04d1c836dcb1c5749cc842884657d))
+
+## [1.3.0](https://www.github.com/BraquageRoyale/api/compare/v1.2.0...v1.3.0) (2021-06-18)
+
+
+### Features
+
+* add new file to new group of routes ([d069c53](https://www.github.com/BraquageRoyale/api/commit/d069c533165a78e320bc2f446a4f8a0c15c21c09))
+* CRUD characters ([a3e85ea](https://www.github.com/BraquageRoyale/api/commit/a3e85eab21cd437c3e02aad5acf0aa69442be9c3))
+* updating the maps services ([a7d3036](https://www.github.com/BraquageRoyale/api/commit/a7d3036666fbc822840a6d43de74821b73d119a1))
+
+
+### Bug Fixes
+
+* name in require check function ([5171a22](https://www.github.com/BraquageRoyale/api/commit/5171a22d421f7e81de8fd3a613863e805872e86e))
+* new port to local firestore ([0c68774](https://www.github.com/BraquageRoyale/api/commit/0c6877477a5bfa4df8cd4a51db2c8873dc368e07))
+* no invite code anymore ([ce4e7e4](https://www.github.com/BraquageRoyale/api/commit/ce4e7e427fb196c5ab8588e6e0a0d1fd98bb457f))
+* require check and some names ([0118a47](https://www.github.com/BraquageRoyale/api/commit/0118a47d4b694f90d70dea519965c012f6cf303f))
+
 ## [1.2.0](https://www.github.com/BraquageRoyale/api/compare/v1.1.0...v1.2.0) (2021-06-12)
 
 
