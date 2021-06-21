@@ -1,6 +1,6 @@
 const firebase = require('../../Utils/firebase');
 const Http_response = require("../../Utils/http-response");
-const C = require("../../Utils/Constant");
+const uuid = require('uuid');
 const requireCheck = require('../../Utils/RequireCheck');
 
 module.exports = {
@@ -26,9 +26,9 @@ async function update(req, res) {
 
     const game = await firebase.getOne(req, res, 'games', req.params.gameId)
     const active_user = game.players.find( player => player.user_id === req.body.active_player_id);
+    const target_user = game.players.find( player => player.user_id === req.body.target_player_id);
 
     if (req.body.is_attack) {
-        const target_user = game.players.find( player => player.user_id === req.body.target_player_id);
 
         if (!target_user) {
             Http_response.HTTP_500(req, res, '', 'No target user with this id is in this game')
@@ -40,7 +40,7 @@ async function update(req, res) {
         target_user['vitality'] -= active_user['attack'];
 
         if (target_user['vitality'] <= 0) {
-            active_user['kill'] += 1;
+            active_user['kills'] += 1;
         }
 
         game.players[active_user_index] = active_user;
@@ -54,5 +54,20 @@ async function update(req, res) {
         players: game.players
     }
 
+    const uid = uuid.v4();
+
+    const body_log = {
+        id: uid,
+        date: {
+            created_at: new Date(),
+            updated_at: new Date(),
+            finished_at: new Date(),
+        },
+        player: active_user['user_id'],
+        action: req.body.is_attack ? 'attack' : "move",
+        attack_player: target_user['user_id']
+    }
+
+    await firebase.db.collection('games').doc(req.params.gameId).collection('log').doc(uid).set(body_log);
     await firebase.update(req, res, 'games', body, req.params.gameId)
 }
