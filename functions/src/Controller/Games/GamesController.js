@@ -7,6 +7,7 @@ module.exports = {
     getAllGames,
     getOneGame,
     createNewGame,
+    createNewInvite,
     updateGameById,
     deleteGameById,
     getOneInvite
@@ -44,6 +45,15 @@ function getOneGame(req, res) {
 function createNewGame (req, res) {
     gameService
         .createNewGame(req, res)
+        .then((games) => res.send(games))
+        .catch(err => {
+            console.error(err)
+            Http_response.HTTP_500(req, res, '', err)
+        });
+}
+function createNewInvite (req, res) {
+    gameService
+        .createNewInvite(req, res)
         .then((games) => res.send(games))
         .catch(err => {
             console.error(err)

@@ -7,7 +7,8 @@ const requireCheck = require('../../Utils/RequireCheck');
 module.exports = {
     createNewGame,
     updateGameById,
-    deleteGameById
+    deleteGameById,
+    createNewInvite
 };
 
 async function createNewGame(req, res) {
@@ -32,6 +33,18 @@ async function createNewGame(req, res) {
         map_id: req.body.map_id,
         players: players,
         status: C.STATUS_ACTIVE
+    }
+    await firebase.create(req, res, 'games', body, uid)
+}
+async function createNewInvite(req, res) {
+    const uid = uuid.v4();
+    const body = {
+        id: uid,
+        accepted: req.body.accepted,
+        active: req.body.active,
+        created_at: new Date(),
+        email: req.body.email,
+        username: req.body.username,
     }
     await firebase.create(req, res, 'games', body, uid)
 }
