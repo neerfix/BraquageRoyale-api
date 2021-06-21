@@ -5,6 +5,23 @@ admin.initializeApp();
 
 const db = admin.firestore()
 
+const getAllByUserId = async (req, res, type, userId) => {
+    const document = db.collection(type);
+    let response = [];
+    await document.get().then(querySnapshot => {
+        let docs = querySnapshot.docs;
+
+        for (let doc of docs) {
+            const game = doc.data().players.find( player => player.user_id === userId);
+            if (game) {
+                response.push(doc.data());
+            }
+        }
+    });
+
+    Http_response.HTTP_200(req, res, '', response)
+}
+
 const getAll = async (req, res, type) => {
     const document = db.collection(type);
     let response = [];
@@ -74,5 +91,6 @@ module.exports = {
     getAll,
     getOne,
     create,
-    update
+    update,
+    getAllByUserId
 };
