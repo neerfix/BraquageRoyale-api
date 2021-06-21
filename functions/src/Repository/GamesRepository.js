@@ -17,7 +17,7 @@ async function getOneGameById(req, res) {
     Http_response.HTTP_200(req, res, '', game)
 }
 async function getOneInvite(req, res) {
-    const game = await firebase.getOne(req, res, 'games', req.params.inviteId)
+    const game = await firebase.getOne(req, res, 'invitations', req.params.inviteId)
 
     Http_response.HTTP_200(req, res, '', game)
 }

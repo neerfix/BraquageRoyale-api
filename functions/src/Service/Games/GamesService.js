@@ -40,13 +40,14 @@ async function createNewInvite(req, res) {
     const uid = uuid.v4();
     const body = {
         id: uid,
-        accepted: req.body.accepted,
-        active: req.body.active,
+        accepted: "false",
+        active: "true",
         created_at: new Date(),
-        email: req.body.email,
+        gameId: req.body.gameId,
+        userId: req.body.userId,
         username: req.body.username,
     }
-    await firebase.create(req, res, 'games', body, uid)
+    await firebase.create(req, res, 'invitations', body, uid)
 }
 
 async function updateGameById(req, res) {
