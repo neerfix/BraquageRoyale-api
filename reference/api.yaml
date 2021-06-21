@@ -441,6 +441,73 @@ paths:
       description: Delete one character by Id
       tags:
         - Characters
+  '/games/{gameId}/action':
+    parameters:
+      - schema:
+          type: string
+        name: gameId
+        in: path
+        required: true
+    post:
+      summary: Post a new action in game
+      operationId: post-games-gameId-action
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Game'
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '500':
+          description: Internal Server Error
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                active_player_id:
+                  type: string
+                is_attack:
+                  type: boolean
+                target_player_id:
+                  type: string
+                coordonate:
+                  type: object
+                  properties:
+                    x:
+                      type: number
+                    'y':
+                      type: number
+                last_coordonate:
+                  type: object
+                  required:
+                    - x
+                    - 'y'
+                  properties:
+                    x:
+                      type: number
+                    'y':
+                      type: number
+                executed_at:
+                  type: string
+                  format: date-time
+                  readOnly: true
+              required:
+                - active_player_id
+                - is_attack
+                - last_coordonate
+      description: When player do an action in game
+      tags:
+        - Games
 components:
   schemas:
     Game:
@@ -486,41 +553,7 @@ components:
             - array
             - 'null'
           items:
-            type: object
-            properties:
-              user_id:
-                type: string
-                format: uuid
-              vitality:
-                type: number
-                format: float
-                default: 100
-              attack:
-                type: number
-                format: float
-                default: 10
-              kills:
-                type: number
-                default: 0
-              coordinates:
-                type: object
-                properties:
-                  x:
-                    type: number
-                    format: float
-                  'y':
-                    type: number
-                    format: float
-              is_spectate:
-                type: boolean
-                default: false
-              caracter_id:
-                type: string
-                format: uuid
-            required:
-              - user_id
-              - is_spectate
-              - caracter_id
+            $ref: '#/components/schemas/Player'
         status:
           type: string
           default: ACTIVED
@@ -675,6 +708,31 @@ components:
       required:
         - name
         - url_image
+    Player:
+      title: Player
+      type: object
+      properties:
+        user_id:
+          type: string
+        vitality:
+          type: number
+        attack:
+          type: number
+        kills:
+          type: integer
+        coordinates:
+          type: object
+          properties:
+            x:
+              type: number
+            'y':
+              type: number
+        is_spectate:
+          type: string
+        caracter_id:
+          type: string
+        updated_at:
+          type: string
   securitySchemes: {}
   responses: {}
   examples: {}
