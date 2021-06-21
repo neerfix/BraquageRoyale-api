@@ -480,14 +480,14 @@ paths:
                   type: boolean
                 target_player_id:
                   type: string
-                coordonate:
+                coordinate:
                   type: object
                   properties:
                     x:
                       type: number
                     'y':
                       type: number
-                last_coordonate:
+                last_coordinate:
                   type: object
                   required:
                     - x
@@ -504,7 +504,7 @@ paths:
               required:
                 - active_player_id
                 - is_attack
-                - last_coordonate
+                - last_coordinate
       description: When player do an action in game
       tags:
         - Games
