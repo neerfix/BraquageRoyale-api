@@ -8,7 +8,8 @@ module.exports = {
     getOneGame,
     createNewGame,
     updateGameById,
-    deleteGameById
+    deleteGameById,
+    getAllGameByUserId
 }
 
 function getAllGames (req, res) {
@@ -23,7 +24,7 @@ function getAllGames (req, res) {
 
 function getOneGame(req, res) {
     gameRepository
-        .getOneGameById(req, res)
+        .getOneByGameById(req, res)
         .then((games) => res.send(games))
         .catch(err => {
             console.error(err)
@@ -53,6 +54,16 @@ function updateGameById (req, res) {
 function deleteGameById (req, res) {
     gameService
         .deleteGameById(req, res)
+        .then((games) => res.send(games))
+        .catch(err => {
+            console.error(err)
+            Http_response.HTTP_500(req, res, '', err)
+        });
+}
+
+function getAllGameByUserId (req, res) {
+    gameRepository
+        .getOneByUserId(req, res)
         .then((games) => res.send(games))
         .catch(err => {
             console.error(err)
