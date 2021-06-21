@@ -56,7 +56,7 @@ module.exports = {
                 games.getOneGame(req, res)
             })
             .get("/games/:gameId/invite", (req, res) => {
-                games.getOneInviteById(req, res)
+                games.getOneInvite(req, res)
             })
             .post("/games", (req, res) => {
                 games.createNewGame(req, res)
