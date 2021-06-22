@@ -21,6 +21,9 @@ module.exports = {
             .get("/users/:userId", (req, res) => {
                 users.getOneUser(req, res)
             })
+            .get("/users/:username", (req, res) => {
+                users.getOneUserByUsername(req, res)
+            })
             .get("/users/:userId/games", (req, res) => {
                 games.getAllGameByUserId(req, res)
             })
