@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.9.0](https://www.github.com/BraquageRoyale/api/compare/v1.8.0...v1.9.0) (2021-06-22)
+
+
+### Features
+
+* return round and username of current player ([3d14abb](https://www.github.com/BraquageRoyale/api/commit/3d14abb168484c503b5c59ee727b4522ebac8bdf))
+
 ## [1.8.0](https://www.github.com/BraquageRoyale/api/compare/v1.7.0...v1.8.0) (2021-06-22)
 
 
