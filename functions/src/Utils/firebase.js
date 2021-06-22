@@ -49,6 +49,18 @@ const getOne = async (req, res, type, data) => {
         for (const player of response.players) {
             player.user = await getOne(req, res, 'users', player.user_id)
         }
+
+        const document = db.collection('games').doc(data).collection('log');
+        const logs = [];
+
+        await document.get().then(querySnapshot => {
+            let docs = querySnapshot.docs;
+            for (let doc of docs) {
+                logs.push(doc.data());
+            }
+        });
+
+        response.log = logs;
     }
 
     return response;
