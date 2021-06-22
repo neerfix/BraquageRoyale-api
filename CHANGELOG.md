@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.7.0](https://www.github.com/BraquageRoyale/api/compare/v1.6.0...v1.7.0) (2021-06-22)
+
+
+### Features
+
+* accept invite and get one by username ([b1e33a9](https://www.github.com/BraquageRoyale/api/commit/b1e33a94ed21e0468d9e02fc360fec12d365d5e1))
+
 ## [1.6.0](https://www.github.com/BraquageRoyale/api/compare/v1.5.1...v1.6.0) (2021-06-22)
 
 
