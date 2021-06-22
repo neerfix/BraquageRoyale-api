@@ -1,5 +1,12 @@
 # Changelog
 
+### [1.4.3](https://www.github.com/BraquageRoyale/api/compare/v1.4.2...v1.4.3) (2021-06-22)
+
+
+### Bug Fixes
+
+* require check ([2f77e62](https://www.github.com/BraquageRoyale/api/commit/2f77e62307b1996b6a8e1ad1cc487e502b545f9d))
+
 ### [1.4.2](https://www.github.com/BraquageRoyale/api/compare/v1.4.1...v1.4.2) (2021-06-22)
 
 
