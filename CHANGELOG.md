@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.8.0](https://www.github.com/BraquageRoyale/api/compare/v1.7.0...v1.8.0) (2021-06-22)
+
+
+### Features
+
+* refuse invitations ([9d37e40](https://www.github.com/BraquageRoyale/api/commit/9d37e407fba1ec4020ddadb5c95f6ac3ed204a4e))
+
 ## [1.7.0](https://www.github.com/BraquageRoyale/api/compare/v1.6.0...v1.7.0) (2021-06-22)
 
 
