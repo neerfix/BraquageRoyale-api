@@ -1,5 +1,12 @@
 # Changelog
 
+### [1.4.2](https://www.github.com/BraquageRoyale/api/compare/v1.4.1...v1.4.2) (2021-06-22)
+
+
+### Bug Fixes
+
+* getOneByGameId ([6d60cdc](https://www.github.com/BraquageRoyale/api/commit/6d60cdc4164470759a4af36adf7e5f74a4f31a28))
+
 ### [1.4.1](https://www.github.com/BraquageRoyale/api/compare/v1.4.0...v1.4.1) (2021-06-22)
 
 
