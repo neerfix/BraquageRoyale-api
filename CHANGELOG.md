@@ -1,5 +1,26 @@
 # Changelog
 
+### [1.4.3](https://www.github.com/BraquageRoyale/api/compare/v1.4.2...v1.4.3) (2021-06-22)
+
+
+### Bug Fixes
+
+* require check ([2f77e62](https://www.github.com/BraquageRoyale/api/commit/2f77e62307b1996b6a8e1ad1cc487e502b545f9d))
+
+### [1.4.2](https://www.github.com/BraquageRoyale/api/compare/v1.4.1...v1.4.2) (2021-06-22)
+
+
+### Bug Fixes
+
+* getOneByGameId ([6d60cdc](https://www.github.com/BraquageRoyale/api/commit/6d60cdc4164470759a4af36adf7e5f74a4f31a28))
+
+### [1.4.1](https://www.github.com/BraquageRoyale/api/compare/v1.4.0...v1.4.1) (2021-06-22)
+
+
+### Bug Fixes
+
+* create a new invite ([3cb544f](https://www.github.com/BraquageRoyale/api/commit/3cb544fb093c9cd195396ea599f7a12881405d57))
+
 ## [1.4.0](https://www.github.com/BraquageRoyale/api/compare/v1.3.3...v1.4.0) (2021-06-21)
 
 

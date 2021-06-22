@@ -41,6 +41,7 @@ async function update(req, res) {
 
         if (target_user['vitality'] <= 0) {
             active_user['kills'] += 1;
+            target_user['is_spectate'] = 1;
         }
 
         game.players[active_user_index] = active_user;
