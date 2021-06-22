@@ -37,6 +37,9 @@ async function createNewGame(req, res) {
     await firebase.create(req, res, 'games', body, uid)
 }
 async function createNewInvite(req, res) {
+    requireCheck.check(req, res, req.body.gameId, 'gameId', 'string')
+    requireCheck.check(req, res, req.body.userId, 'userId', 'string')
+    requireCheck.check(req, res, req.body.username, 'username', 'string')
     const uid = uuid.v4();
     const body = {
         id: uid,
