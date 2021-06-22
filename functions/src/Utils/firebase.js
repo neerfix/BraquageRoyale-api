@@ -44,6 +44,13 @@ const getOne = async (req, res, type, data) => {
         Http_response.HTTP_404(req, res, '', type)
     }
 
+    if (type === 'games') {
+        response.map = await getOne(req, res, 'maps', response.map_id)
+        for (const player of response.players) {
+            player.user = await getOne(req, res, 'users', player.user_id)
+        }
+    }
+
     return response;
 }
 

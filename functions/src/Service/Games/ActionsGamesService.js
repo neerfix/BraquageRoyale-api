@@ -62,8 +62,6 @@ async function update(req, res) {
         requireCheck.check(req, res, req.body.coordinate.y, 'coordinate.y', 'number')
     }
 
-    console.log(game.players[active_user_index]);
-
     game.players[active_user_index].coordinate = req.body.coordinate
     game.players[active_user_index].last_coordinate = req.body.last_coordinate
 
@@ -85,9 +83,9 @@ async function update(req, res) {
             updated_at: new Date(),
             finished_at: new Date(),
         },
-        player: active_user['user_id'],
+        player: active_user.user_id,
         action: req.body.is_attack ? 'attack' : "move",
-        attack_player: target_user['user_id']
+        attack_player: target_user.user_id
     }
 
     await firebase.db.collection('games').doc(req.params.gameId).collection('log').doc(uid).set(body_log);
