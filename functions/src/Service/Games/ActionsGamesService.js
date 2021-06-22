@@ -9,7 +9,13 @@ module.exports = {
 };
 
 async function start(req, res) {
-    Http_response.HTTP_200(req, res, '', 'hello')
+    const body = {
+        date: {
+            started_at: new Date()
+        }
+    }
+
+    await firebase.update(req, res, 'games', body, req.params.gameId)
 }
 
 async function update(req, res) {
@@ -27,6 +33,7 @@ async function update(req, res) {
     const game = await firebase.getOne(req, res, 'games', req.params.gameId)
     const active_user = game.players.find( player => player.user_id === req.body.active_player_id);
     const target_user = game.players.find( player => player.user_id === req.body.target_player_id);
+    const active_user_index = game.players.indexOf(active_user);
 
     if (req.body.is_attack) {
 
@@ -34,7 +41,6 @@ async function update(req, res) {
             Http_response.HTTP_500(req, res, '', 'No target user with this id is in this game')
         }
 
-        const active_user_index = game.players.indexOf(active_user);
         const target_user_index = game.players.indexOf(target_user);
 
         target_user['vitality'] -= active_user['attack'];
@@ -48,6 +54,17 @@ async function update(req, res) {
         game.players[target_user_index] = target_user;
     }
 
+    if (!req.body.coordinate.y) {
+        requireCheck.check(req, res, req.body.coordinate.x, 'coordinate.x', 'number')
+    }
+
+    if (!req.body.coordinate.x) {
+        requireCheck.check(req, res, req.body.coordinate.y, 'coordinate.y', 'number')
+    }
+
+    game.players[active_user_index].coordinate = req.body.coordinate
+    game.players[active_user_index].last_coordinate = req.body.last_coordinate
+
     const body = {
         date: {
             updated_at: new Date(),
@@ -59,14 +76,16 @@ async function update(req, res) {
 
     const body_log = {
         id: uid,
+        coordinate: req.body.coordinate,
+        last_coordinate: req.body.last_coordinate,
         date: {
             created_at: new Date(),
             updated_at: new Date(),
             finished_at: new Date(),
         },
-        player: active_user['user_id'],
+        player: active_user.user_id,
         action: req.body.is_attack ? 'attack' : "move",
-        attack_player: target_user['user_id']
+        attack_player: target_user.user_id
     }
 
     await firebase.db.collection('games').doc(req.params.gameId).collection('log').doc(uid).set(body_log);
