@@ -8,7 +8,8 @@ module.exports = {
     createNewGame,
     updateGameById,
     deleteGameById,
-    createNewInvite
+    createNewInvite,
+    acceptInvite
 };
 
 async function createNewGame(req, res) {
@@ -74,6 +75,20 @@ async function updateGameById(req, res) {
         map_id: req.body.map_id,
         players: req.body.players,
         status: C.STATUS_ACTIVE
+    }
+    await firebase.update(req, res, 'games', body, req.params.gameId)
+}
+
+async function acceptInvite(req, res) {
+    const game = await firebase.getOne(req, res, 'games', req.params.gameId)
+    const active_user = game.players.find( player => player.user_id === req.body.userId);
+    const active_user_index = game.players.indexOf(active_user);
+    game.players[active_user_index] = active_user;
+    const body = {
+        date: {
+            updated_at: new Date(),
+        },
+        players: game.players
     }
     await firebase.update(req, res, 'games', body, req.params.gameId)
 }

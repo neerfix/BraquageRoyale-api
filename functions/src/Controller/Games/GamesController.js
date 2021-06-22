@@ -11,8 +11,9 @@ module.exports = {
     updateGameById,
     deleteGameById,
     getOneInvite,
-    getAllGameByUserId
-
+    getAllGameByUserId,
+    acceptInvite,
+    getAllInvites
 }
 
 function getAllGames (req, res) {
@@ -97,6 +98,15 @@ function deleteGameById (req, res) {
 function getAllGameByUserId (req, res) {
     gameRepository
         .getOneByUserId(req, res)
+        .then((games) => res.send(games))
+        .catch(err => {
+            console.error(err)
+            Http_response.HTTP_500(req, res, '', err)
+        });
+}
+function acceptInvite (req, res) {
+    gameService
+        .acceptInvite(req, res)
         .then((games) => res.send(games))
         .catch(err => {
             console.error(err)
