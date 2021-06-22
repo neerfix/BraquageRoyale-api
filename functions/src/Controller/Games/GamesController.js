@@ -13,7 +13,8 @@ module.exports = {
     getOneInvite,
     getAllGameByUserId,
     acceptInvite,
-    getAllInvites
+    getAllInvites,
+    refuseInvite
 }
 
 function getAllGames (req, res) {
@@ -107,6 +108,16 @@ function getAllGameByUserId (req, res) {
 function acceptInvite (req, res) {
     gameService
         .acceptInvite(req, res)
+        .then((games) => res.send(games))
+        .catch(err => {
+            console.error(err)
+            Http_response.HTTP_500(req, res, '', err)
+        });
+}
+
+function refuseInvite (req, res) {
+    gameService
+        .refuseInvite(req, res)
         .then((games) => res.send(games))
         .catch(err => {
             console.error(err)

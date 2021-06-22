@@ -9,7 +9,8 @@ module.exports = {
     updateGameById,
     deleteGameById,
     createNewInvite,
-    acceptInvite
+    acceptInvite,
+    refuseInvite
 };
 
 async function createNewGame(req, res) {
@@ -105,6 +106,16 @@ async function acceptInvite(req, res) {
     }
 
     await firebase.update(req, res, 'games', body, req.params.gameId)
+    await firebase.update(req, res, 'invitations', invitations, req.params.inviteId)
+}
+
+async function refuseInvite(req, res) {
+    const invitation = await firebase.getOne(req, res, 'invitations', req.params.inviteId)
+
+    const invitations = {
+        accepted: "false",
+        active: "false",
+    }
     await firebase.update(req, res, 'invitations', invitations, req.params.inviteId)
 }
 
