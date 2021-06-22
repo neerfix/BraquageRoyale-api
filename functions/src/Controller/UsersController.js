@@ -8,7 +8,8 @@ module.exports = {
     getOneUser,
     createNewUser,
     updateUserById,
-    deleteUserById
+    deleteUserById,
+    getOneUserByUsername
 }
 
 function getAllUsers (req, res) {
@@ -24,6 +25,16 @@ function getAllUsers (req, res) {
 function getOneUser (req, res) {
     userRepository
         .getOneUserById(req, res, req.params.userId)
+        .then((user) => res.send(user))
+        .catch(err => {
+            console.error(err)
+            Http_response.HTTP_500(req, res, '', err)
+        });
+}
+
+function getOneUserByUsername (req, res) {
+    userRepository
+        .getOneUserByUsername(req, res, req.params.player.username)
         .then((user) => res.send(user))
         .catch(err => {
             console.error(err)
