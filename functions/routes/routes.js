@@ -70,6 +70,9 @@ module.exports = {
             .post("/games/:gameId/invite/:inviteId/accepted", (req, res) => {
                 games.acceptInvite(req, res)
             })
+            .post("/games/:gameId/invite/:inviteId/refused", (req, res) => {
+                games.refuseInvite(req, res)
+            })
             .post("/games", (req, res) => {
                 games.createNewGame(req, res)
             })
