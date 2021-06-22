@@ -58,8 +58,14 @@ module.exports = {
             .get("/games/:gameId", (req, res) => {
                 games.getOneGame(req, res)
             })
+            .get("/invite/:inviteId", (req, res) => {
+                games.getOneInvite(req, res)
+            })
             .post("/games", (req, res) => {
                 games.createNewGame(req, res)
+            })
+            .post("/invite", (req, res) => {
+                games.createNewInvite(req, res)
             })
             .patch("/games/:gameId", (req, res) => {
                 games.updateGameById(req, res)
