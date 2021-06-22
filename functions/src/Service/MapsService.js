@@ -14,8 +14,11 @@ module.exports = {
 };
 
 async function createNewMap(req, res) {
+    console.log(req.body.files_url);
+
     requireCheck.check(req, res, req.body.name, 'name', 'string')
     requireCheck.check(req, res, req.body.files_url, 'files_url', 'string')
+
     const uid = uuid.v4();
     const body = {
         id: uid,
@@ -37,7 +40,7 @@ async function createNewMap(req, res) {
 
 async function updateMapById(req, res) {
     requireCheck.check(req, res, req.body.name, 'name', 'string')
-    requireCheck.check(req, res, req.body.files_url, 'files_url', 'string')
+    requireCheck.check(req, res, req.body.version.files_url, 'files_url', 'string')
 
     const body = {
         date: {
@@ -49,8 +52,8 @@ async function updateMapById(req, res) {
         status: req.body.status,
         vote: req.body.vote,
         version: {
-            version_number: req.body.version_number ,
-            files_url: req.body.files_url,
+            version_number: "1.0.0",
+            files_url: req.body.version.files_url,
         }
     }
     await firebase.update(req, res, 'maps', body, req.params.mapId)
