@@ -2,6 +2,7 @@ module.exports = {
     HTTP_200,
     HTTP_201,
     HTTP_400,
+    HTTP_403,
     HTTP_404,
     HTTP_409,
     HTTP_500,
@@ -21,6 +22,10 @@ function HTTP_201 (req, res, next, message) {
 
 function HTTP_400 (req, res, message) {
     return errorMessage(res, 400, "Bad request", message);
+}
+
+function HTTP_403 (req, res, next, reason, message) {
+    return errorMessage(res, 403, "Forbidden", reason, message);
 }
 
 function HTTP_404 (req, res, next, items, message) {

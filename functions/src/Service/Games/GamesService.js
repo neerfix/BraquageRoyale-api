@@ -26,7 +26,6 @@ async function createNewGame(req, res) {
         date: {
             created_at: new Date(),
             updated_at: new Date(),
-            finished_at: new Date(),
         },
         name: req.body.name,
         max_player: req.body.max_player,
