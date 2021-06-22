@@ -12,7 +12,7 @@ async function getAllGames(req, res) {
     await firebase.getAll(req, res, 'games')
 }
 
-async function getOneGameId(req, res) {
+async function getOneByGameId(req, res) {
     const game = await firebase.getOne(req, res, 'games', req.params.gameId)
 
     Http_response.HTTP_200(req, res, '', game)
