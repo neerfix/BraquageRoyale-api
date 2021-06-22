@@ -9,9 +9,20 @@ module.exports = {
 };
 
 async function start(req, res) {
+    const game = await firebase.getOne(req, res, 'games', req.params.gameId);
+
     const body = {
         date: {
-            started_at: new Date()
+            started_at: new Date(),
+            created_at: new Date(),
+            updated_at: new Date(),
+            finished_at: ''
+        },
+        round: 0,
+        last_player: '',
+        current_player: {
+            num: 0,
+            player_name: game.players[0].user.player.username
         }
     }
 
@@ -34,6 +45,7 @@ async function update(req, res) {
     const active_user = game.players.find( player => player.user_id === req.body.active_player_id);
     const target_user = game.players.find( player => player.user_id === req.body.target_player_id);
     const active_user_index = game.players.indexOf(active_user);
+    let target_user_index = ''
 
     if (req.body.is_attack) {
 
@@ -41,7 +53,7 @@ async function update(req, res) {
             Http_response.HTTP_500(req, res, '', 'No target user with this id is in this game')
         }
 
-        const target_user_index = game.players.indexOf(target_user);
+        target_user_index = game.players.indexOf(target_user);
 
         target_user['vitality'] -= active_user['attack'];
 
@@ -76,6 +88,7 @@ async function update(req, res) {
 
     const body_log = {
         id: uid,
+        round: game.round,
         coordinate: req.body.coordinate,
         last_coordinate: req.body.last_coordinate,
         date: {
@@ -83,9 +96,19 @@ async function update(req, res) {
             updated_at: new Date(),
             finished_at: new Date(),
         },
-        player: active_user.user_id,
+        player: {
+            username: game.players[active_user_index].user.player.username,
+            avatar: game.players[active_user_index].user.avatar,
+            rank: game.players[active_user_index].user.player.rank,
+            exp: game.players[active_user_index].user.player.exp,
+        },
         action: req.body.is_attack ? 'attack' : "move",
-        attack_player: target_user.user_id
+        target_player: {
+            username: game.players[target_user_index].user.player.username,
+            avatar: game.players[target_user_index].user.avatar,
+            rank: game.players[target_user_index].user.player.rank,
+            exp: game.players[target_user_index].user.player.exp,
+        },
     }
 
     await firebase.db.collection('games').doc(req.params.gameId).collection('log').doc(uid).set(body_log);

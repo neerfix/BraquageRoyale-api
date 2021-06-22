@@ -10,7 +10,7 @@ module.exports = {
 };
 
 async function getAllGames(req, res) {
-    await firebase.getAll(req, res, 'games')
+    return await firebase.getAll(req, res, 'games')
 }
 
 async function getAllInvites(req, res) {
