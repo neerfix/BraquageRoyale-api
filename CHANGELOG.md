@@ -1,5 +1,12 @@
 # Changelog
 
+### [1.5.1](https://www.github.com/BraquageRoyale/api/compare/v1.5.0...v1.5.1) (2021-06-22)
+
+
+### Bug Fixes
+
+* create map & create move ([381b50e](https://www.github.com/BraquageRoyale/api/commit/381b50e7f1370b0a414235b9eb287937e260b5d7))
+
 ## [1.5.0](https://www.github.com/BraquageRoyale/api/compare/v1.4.3...v1.5.0) (2021-06-22)
 
 
