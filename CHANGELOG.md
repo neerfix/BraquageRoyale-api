@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.5.0](https://www.github.com/BraquageRoyale/api/compare/v1.4.3...v1.5.0) (2021-06-22)
+
+
+### Features
+
+* getAllInvites ([2c6b8a8](https://www.github.com/BraquageRoyale/api/commit/2c6b8a8f0fca1470706321ba65614eb049bafca9))
+
 ### [1.4.3](https://www.github.com/BraquageRoyale/api/compare/v1.4.2...v1.4.3) (2021-06-22)
 
 
