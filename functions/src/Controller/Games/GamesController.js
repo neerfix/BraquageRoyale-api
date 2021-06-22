@@ -24,7 +24,7 @@ function getAllGames (req, res) {
 
 function getOneGame(req, res) {
     gameRepository
-        .getOneByGameById(req, res)
+        .getOneByGameId(req, res)
         .then((games) => res.send(games))
         .catch(err => {
             console.error(err)
