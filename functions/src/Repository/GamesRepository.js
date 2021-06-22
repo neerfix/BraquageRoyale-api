@@ -3,14 +3,18 @@ const Http_response = require("../Utils/http-response");
 
 module.exports = {
     getAllGames,
-    getOneGameById,
     getOneInvite,
     getOneByGameById,
-    getOneByUserId
+    getOneByUserId,
+    getAllInvites
 };
 
 async function getAllGames(req, res) {
     await firebase.getAll(req, res, 'games')
+}
+
+async function getAllInvites(req, res) {
+    await firebase.getAll(req, res, 'invitations')
 }
 
 async function getOneByGameById(req, res) {
