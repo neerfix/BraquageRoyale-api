@@ -1,5 +1,12 @@
 # Changelog
 
+### [1.4.1](https://www.github.com/BraquageRoyale/api/compare/v1.4.0...v1.4.1) (2021-06-22)
+
+
+### Bug Fixes
+
+* create a new invite ([3cb544f](https://www.github.com/BraquageRoyale/api/commit/3cb544fb093c9cd195396ea599f7a12881405d57))
+
 ## [1.4.0](https://www.github.com/BraquageRoyale/api/compare/v1.3.3...v1.4.0) (2021-06-21)
 
 
