@@ -3,6 +3,7 @@ const maps = require("../src/Controller/MapsController")
 const characters = require("../src/Controller/CharactersController")
 const games = require("../src/Controller/Games/GamesController")
 const objects = require("../src/Controller/ObjectsController")
+const notification = require("../src/Controller/NotificationsController")
 const Http_response = require("../src/Utils/http-response")
 
 module.exports = {
@@ -118,6 +119,17 @@ module.exports = {
             })
             .delete("/objects/:objectId",(req, res) => {
                 objects.deleteObjectById(req, res)
+            })
+
+            // Sub
+            .get("/subscription", (req, res) => {
+                notification.getSubscribers(req, res)
+            })
+            .post("/subscription", (req, res) => {
+                notification.registerSubscriber(req, res)
+            })
+            .post("/notification", (req, res) => {
+                notification.sendToSubscriber(req, res)
             })
     }
 };
